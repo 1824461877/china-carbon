@@ -11,11 +11,13 @@
         <p>Offset Flight</p>
       </ul>
       <ul>
-        <p>我们的方法</p>
+        <!-- <p>我们的方法</p> -->
+        <a> <router-link to = "/approach">我们的方法</router-link></a>
         <p>Our approach</p>
       </ul>
       <ul>
-        <p>我们的项目</p>
+        <!-- <p>我们的项目</p> -->
+         <a> <router-link to = "/project">我们的项目</router-link></a>
         <p>Our project</p>
       </ul>
       <ul>
@@ -59,8 +61,9 @@ export default {
 </script>
 
 <style>
+
   .header {
-    padding: 27px 3% 27px 3%;
+    padding: 1px 3% 15px 3%;
     display: flex;
     z-index: 99;
     position: fixed;
@@ -70,7 +73,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     background: white;
-    box-shadow: 1px 1px 13px 1px #cccccc
+    /* box-shadow: 1px 1px 13px 1px #cccccc */
   }
 
   .log-div {
@@ -161,5 +164,13 @@ export default {
   .logo-jifen img {
     width: 18px;
     height: 18px;
+  }
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  a:hover {
+    background-color: #e0e0e0;
+    box-sizing: border-box;
   }
 </style>
