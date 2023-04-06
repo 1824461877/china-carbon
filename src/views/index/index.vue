@@ -1,13 +1,13 @@
 <template>
-  <div class="index">
-    <headers></headers>
+  <headers></headers>
+  <div class="index" :class="show?'':'index-show'">
     <div class="index-left">
       <div class="index-box1 i-box i-box-t">
         <div class="sm-box">
           <div class="sm-box-s sm-box-ss"></div>
         </div>
       </div>
-      <div class="index-box1 i-box">
+      <div class="index-box1 i-box i-box-z">
         <div class="sm-box">
           <div class="sm-box-s sm-box-ss"></div>
         </div>
@@ -26,31 +26,31 @@
       <p style="font-size: 20px"> Contribute to climate protection -- </p>
       <div class="index-right-info">
         <div>
-          <p>330K+</p>
-          <p>二氧化碳抵消量</p>
+          <p>10+<span>个</span></p>
+          <p>自愿减排项目</p>
         </div>
         <div>
-          <p>4.9</p>
-          <p>TrustPilot 评分</p>
+          <p>10000+<span>吨</span></p>
+          <p>碳指标</p>
         </div>
         <div>
-          <p>$4.5M+</p>
-          <p>筹集资金</p>
+          <p>50000+</p>
+          <p>注册用户</p>
         </div>
         <div>
-          <p>700K+</p>
-          <p>贡献</p>
+          <p>5000+</p>
+          <p>活跃用户</p>
         </div>
       </div>
-      <div class="index-button">
+      <div class="index-button" @click="show=true">
         <div class="index-button-s">
           <div class="index-button-ss">
-            让我们了解更多
+            点击这里开始
           </div>
         </div>
       </div>
     </div>
-    <actions></actions>
+    <actions :class="show?'act-show':''"></actions>
   </div>
 </template>
 
@@ -60,14 +60,16 @@ import action from "./components/action.vue"
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "Index",
+  name: "index",
   components: {
     headers: header,
     actions: action,
   },
   data() {
-    return {}
-  }
+    return {
+      show: false
+    }
+  },
 }
 </script>
 
@@ -76,6 +78,69 @@ export default {
   height: 100%;
   width: 100%;
   position: absolute;
+}
+
+@keyframes act-show-an {
+  from {
+    top: 100%
+  }
+  to {
+    top: 0;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .index-right {
+    width: 94% !important;
+    align-items: center !important;
+    flex-wrap: unset !important;
+  }
+  .index h1 {
+    font-size: 8vw !important;
+    text-align: left;
+  }
+  .index p {
+    font-size: 3vw !important;
+  }
+
+  .index h2 {
+    margin-top: 45px !important;
+    font-size: 6vw !important;
+  }
+
+  .index-right-info {
+    flex-wrap: wrap;
+  }
+
+  .index-right-info div {
+    width: 50% !important;
+    margin: 15px 0 !important;
+  }
+
+  .index-button-s{
+    margin-top: 40px !important;
+  }
+
+  .index-button {
+    width: 200px !important;
+  }
+
+  .index-right-info p {
+    font-size: 4vw !important;
+  }
+
+  .index-button-ss {
+    font-size: 3vw !important;
+  }
+}
+
+.act-show {
+  animation: act-show-an 0.4s;
+  animation-fill-mode: forwards;
+}
+
+.index-show {
+  overflow: hidden;
 }
 
 .index-left {
@@ -131,15 +196,17 @@ export default {
 }
 
 .index-right-info div {
-  width: 110px;
   text-align: center;
-  margin: 0 10px;
+  margin: 0 15px;
   color: #387336eb;
 }
 
 .index-right-info p {
   font-size: 35px;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .index-right-info p:nth-of-type(2) {
@@ -148,9 +215,59 @@ export default {
 }
 
 .i-box-t {
-  transform: rotate(-70deg) !important;
   left: -30vw !important;
   bottom: 7vh !important;
+  animation: box-t-an 0.7s !important;
+  animation-fill-mode: forwards !important;
+}
+
+.i-box-z {
+  transform: rotate(-40deg);
+  animation: box-z-an 0.6s !important;
+  animation-fill-mode: forwards !important;
+}
+
+.i-box-b {
+  transform: rotate(-15deg);
+  width: 78% !important;
+  height: 37vw !important;
+  position: fixed;
+  bottom: -20vw !important;
+  left: -9vw !important;
+  animation: box-b-an 0.5s !important;
+  animation-fill-mode: forwards !important;
+}
+
+
+@keyframes box-t-an {
+  0% {
+    transform-origin: left bottom;
+    transform: rotate(-100deg);
+  }
+  100% {
+    transform: rotate(-70deg);
+  }
+}
+
+@keyframes box-z-an {
+  0% {
+    transform-origin: left bottom;
+    transform: rotate(-70deg);
+  }
+  100% {
+
+    transform: rotate(-40deg);
+  }
+}
+
+@keyframes box-b-an {
+  0% {
+    transform-origin: left bottom;
+    transform: rotate(-40deg);
+  }
+  100% {
+    transform: rotate(-15deg);
+  }
 }
 
 .i-box {
@@ -160,21 +277,12 @@ export default {
   display: flex;
   border-radius: 50%;
   align-items: center;
-  transform: rotate(-40deg);
   position: fixed;
   bottom: -20px;
   box-shadow: 1px -1px 15px 1px #00000045;
   left: -18vw;
 }
 
-.i-box-b {
-  transform: rotate(-13deg);
-  width: 78%;
-  height: 37vw;
-  position: fixed;
-  bottom: -20vw;
-  left: -10vw;
-}
 
 .sm-box {
   height: 70%;
@@ -201,6 +309,11 @@ export default {
   padding: 5%;
   margin-top: 100px;
   border-radius: 15px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.index-right-info span {
+  font-size: 25px;
 }
 
 .index-button-ss {
@@ -211,5 +324,17 @@ export default {
   font-weight: 600;
   color: white;
   border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
+
+.index-button-s:hover .index-button-ss {
+  background: #3c7336;
+}
+
+.index-button-s:hover {
+  background: #38733670;
+  transform: scale(0.9, 0.9);
+}
+
 </style>

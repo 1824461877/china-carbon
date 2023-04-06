@@ -19,28 +19,31 @@
               </div>
               <div class="vertical-box-item">
                 <h3>每一美元都会有所作为</h3>
-                <p>没有您的支持，我们的项目就不会发生。 有了 Wren，您的钱就会产生真正的影响。</p>
+                <p>没有您的支持，我们的项目就不会发生。 您的钱就会产生真正的影响。</p>
               </div>
             </div>
           </div>
         </el-carousel-item>
       </el-carousel>
     </div>
-    <strictures></strictures>
-    <commons></commons>
+    <stricture></stricture>
+    <common></common>
+    <bottom></bottom>
   </div>
 </template>
 
 <script>
 import stricture from "./stricture.vue"
 import common from "./common.vue"
+import bottom from "../../components/bottom.vue"
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "action",
   components: {
-    strictures: stricture,
-    commons: common,
+    stricture: stricture,
+    common: common,
+    bottom: bottom,
   },
   data() {
     return {
@@ -54,13 +57,14 @@ export default {
 <style scoped>
 .action {
   position: absolute;
-  top: 0;
+  top: 100%;
   padding-top: 100px;
   text-align: center;
   width: 100%;
   min-height: 100%;
   background: #f0f0f0;
 }
+
 
 .vertical-box {
   display: flex;
