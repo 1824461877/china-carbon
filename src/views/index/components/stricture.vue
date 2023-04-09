@@ -54,6 +54,16 @@ export default {
     }
 }
 
+@media screen and (max-width: 750px) {
+  .stricture-box {
+    flex-wrap: wrap;
+  }
+  .stricture-box-item {
+    width: 100%;
+    margin-bottom: 80px !important;
+  }
+}
+
 .stricture-box {
     display: flex;
     margin-top: 100px;
