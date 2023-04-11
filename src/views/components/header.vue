@@ -36,11 +36,14 @@
         <div class="user_box_info" v-show="show3" @mouseover="show3=true" @mouseleave="show3=false">
             <ul>
                 <li @click="user_path()"><img src="@/assets/set.png"/> 设置</li>
-                <li><img src="@/assets/out.png"/> 登出</li>
+                <li @click="out()"><img src="@/assets/out.png"/> 登出</li>
             </ul>
         </div>
-        <div class="navbar-dis" @click="ndc">
-            <img src="@/assets/nav.png"/>
+        <div class="navbar-dis">
+            <img @click="ndc" src="@/assets/nav.png"/>
+            <div class="user_box dis" v-show="user_show" @mouseover="show3=true" @mouseleave="show3=false">
+                <img src="@/assets/tou.jpg"/>
+            </div>
         </div>
 
         <div class="navbar-dis-body" v-show="ndb">
@@ -68,12 +71,36 @@
                 </li>
             </ul>
         </div>
+        <div class="show-windows" v-show="show_set">
+            <div class="show-win-box">
+                <div class="">
+                    <h3>帐号设置用户信息</h3>
+                    <div class="ts">
+                        ** 必需要设置用户基本信息 **
+                    </div>
+                    <div class="user-box">
+                        <p>用户姓名</p>
+                        <input class="" v-model="user_info.name"/>
+                    </div>
+                    <div class="user-box">
+                        <p>用户基本描述</p>
+                        <textarea v-model="user_info.introduction"/>
+                    </div>
+                    <div class="user-button-item">
+                        <div class="user-button next" @click="admin_set_info()">点击设置</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 
 <script>
-import {admin_info} from '@/api/admin'
+import {admin_info, admin_set} from '@/api/admin'
+import {removeToken} from "@/utils/auth";
+import {ElMessage} from "element-plus";
+import {h} from "vue";
 
 export default {
     name: 'header-mode',
@@ -86,6 +113,12 @@ export default {
             s_index: 1,
             ndb: false,
             user: "",
+            show_set: false,
+            user_info: {
+                avatar: "",
+                introduction: "",
+                name: ""
+            },
         }
     },
     created() {
@@ -102,20 +135,49 @@ export default {
             this.s_index = 5
         }
 
-        let user = localStorage.getItem("user")
-        if (user === undefined || user === "" || user === null) {
-            admin_info().then(response => {
-                if (response.code === 200) {
-                    localStorage.setItem("user", JSON.stringify(response.data))
-                }
-            })
-        }
-        this.user = JSON.parse(user);
-        this.user_show = true
+        this.user_infos()
     },
     methods: {
+        admin_set_info() {
+            const formData = Object.assign({}, this.user_info)
+            admin_set(formData).then(response => {
+                if (response.code === 200) {
+                    ElMessage({
+                        message: h('p', null, [
+                            h('a', {style: 'color: teal'}, '设置用户基本信息成功'),
+                        ]),
+                    })
+                    this.show_set = false
+                    this.user_infos()
+                }
+            })
+        },
+        user_infos() {
+            let user = localStorage.getItem("user")
+            if (user === undefined || user === "" || user === null) {
+                admin_info().then(response => {
+                    if (response.code === 200) {
+                        localStorage.setItem("user", JSON.stringify(response.data))
+                        this.user = JSON.parse(user);
+                        this.user_show = true
+                    } else if (response.code === 400 && response.errmsg === "record not found") {
+                        this.show_set = true
+                    }
+                })
+            } else {
+                this.user = JSON.parse(user);
+                this.user_show = true
+            }
+        },
         ndc() {
             this.ndb = true
+        },
+        out() {
+            localStorage.removeItem("user")
+            removeToken()
+            this.user = ""
+            this.user_show = false
+            this.index()
         },
         index() {
             this.$router.push({path: '/index'})
@@ -152,6 +214,81 @@ export default {
     background: #ffffffeb;
 }
 
+.user-box {
+    margin-top: 30px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #25403bde;
+}
+
+.user-button-item {
+    display: flex;
+    margin: 30px 0 10px 0;
+    justify-content: end;
+}
+
+.ts {
+    background: #25403b14;
+    padding: 20px;
+    color: #ab5e11;
+}
+
+
+.user-button {
+    background: #25403b;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 400;
+    cursor: pointer;
+    font-size: 13px;
+    min-width: 80px;
+}
+
+.show-win-box {
+    padding: 20px 40px;
+    background: white;
+    min-width: 430px;
+}
+
+.user-box textarea {
+    height: 110px;
+    width: 96%;
+    border: 3px solid #21403b;
+    padding: 5px;
+    background: #36595221;
+    font-size: 14px;
+}
+
+.show-windows {
+    position: fixed;
+    height: 100%;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background: #2a433f47;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.user-box input {
+    padding: 10px;
+    font-size: 15px;
+    width: 95%;
+    border: none;
+    background: #36595221;
+    border-bottom: 3px solid #21403b;
+}
+
+.user-box input:focus-visible {
+    outline: none;
+}
+
 .navbar-dis-body {
     position: fixed;
     right: 0;
@@ -161,6 +298,7 @@ export default {
     background: white;
     z-index: 999;
 }
+
 
 .navbar-dis {
     display: none;
@@ -173,7 +311,7 @@ export default {
 }
 
 .navbar-dis img {
-    width: 30px;
+    width: 28px;
 }
 
 .user_box_info {
@@ -212,11 +350,11 @@ export default {
     justify-content: center;
 }
 
-.navbar img {
+.user_box img {
     width: 32px;
     height: 32px;
     border-radius: 10px;
-    border: 4px solid #517f75ba !important;
+    border: 4px solid #55756e !important;
     padding: 2px;
 }
 
@@ -264,17 +402,6 @@ export default {
     font-size: 17px;
     font-weight: 600;
 }
-
-@media screen and (max-width: 1100px) {
-    .navbar {
-        display: none;
-    }
-
-    .navbar-dis {
-        display: block;
-    }
-}
-
 
 .navbar li:hover {
     border-bottom: 2px solid #365952;
@@ -398,6 +525,34 @@ export default {
 .logo-jifen img {
     width: 18px;
     height: 18px;
+}
+
+@media screen and (max-width: 1100px) {
+    .navbar {
+        display: none;
+    }
+
+    .navbar-dis {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dis {
+        border-bottom: 0px solid #ffffff00 !important;
+        margin-left: 20px !important;
+    }
+
+    .user_box img {
+        width: 29px;
+        height: 29px;
+    }
+
+    .user_box_info {
+        width: 69px !important;
+        right: 2.46vw !important;
+    }
+
 }
 
 </style>

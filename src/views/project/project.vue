@@ -64,7 +64,7 @@
                         了解更多
                     </div>
                 </div>
-                <img src="@/assets/future-forest-stream.avif"/>
+                <img src="@/assets/future-forest.png"/>
             </div>
             <div class="pbi-box">
                 <img src="@/assets/mt.jpg"/>

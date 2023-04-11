@@ -1,6 +1,6 @@
 <template>
     <div class="invest">
-        <img src="@/assets/portfolio-mix.avif"/>
+        <img style="width: 45%" src="@/assets/undraw_empty_street_re_atjq.svg"/>
         <h1>通过以下方式实现碳资产投资收益</h1>
         <div class="invest-list">
             <div class="invest-box">

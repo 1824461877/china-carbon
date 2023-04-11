@@ -33,9 +33,12 @@
             <div class="common-button">让我们开始吧</div>
         </div>
     </div>
+    <bottom></bottom>
 </template>
 
 <script>
+import bottom from "../../components/bottom.vue"
+
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name: "common",
@@ -43,6 +46,9 @@ export default {
         return {
             activeName: 1,
         }
+    },
+    components:{
+        bottom:bottom
     }
 }
 </script>

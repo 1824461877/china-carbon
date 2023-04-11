@@ -2,7 +2,7 @@
     <div class="sign-in">
         <div class="sign-in-box">
             <div class="sign-logo">
-                <img class="logo" src="@/assets/logo-black.png"/>
+                <img class="logo" @click="index()" src="@/assets/logo-black.png"/>
                 <div class="sign-in-tit">登录</div>
             </div>
             <div class="sign-in-box-body">
@@ -13,14 +13,22 @@
                 <div class="sign-in-box-right">
                     <div class="sign-in-box-right-bg">
                         <ul class="sign-in-option">
-                            <li :class="num===1?'':'sign-show'" @click="num=1">手机号登录</li>
+                            <li :class="num===1?'':'sign-show'" @click="num=1;user.username=''">手机号登录</li>
+                            <li :class="num===2?'':'sign-show'" @click="num=2;user.username=''">邮箱登录</li>
                         </ul>
-                        <div class="sign-in-user">
+                        <div class="sign-in-user" v-show="num===1">
                             <p>手机号 | Cell-phone number</p>
                             <input name="cell-phone" :class="user_show.phone?'':'err'" v-model="user.username"
                                    @keyup="check_phone"
                                    placeholder="请输入手机号" type="text"/>
                             <p v-show="!user_show.phone" class="errs">** 您输入的手机号码格式错误</p>
+                        </div>
+                        <div class="sign-in-user" v-show="num===2">
+                            <p>邮箱 | Email</p>
+                            <input name="cell-phone" :class="user_show.email?'':'err'" v-model="user.username"
+                                   @keyup="check_email"
+                                   placeholder="请输入邮箱" type="text"/>
+                            <p v-show="!user_show.email" class="errs">** 您输入的邮箱格式错误</p>
                         </div>
                         <div class="sign-in-user">
                             <p>密码 | Password</p>
@@ -46,7 +54,7 @@
 <script>
 import {sign_in} from "@/api/sign";
 import {setToken} from '@/utils/auth'
-import {passwordValid} from "@/utils/pass";
+import {passwordValid,emailValid} from "@/utils/pass";
 import {ElMessage} from "element-plus";
 import {h} from "vue";
 
@@ -62,18 +70,28 @@ export default {
             },
             user_show: {
                 phone: true,
+                email: true,
                 password: true,
-                err_info: "",
             },
         }
     },
     methods: {
+        index() {
+            this.$router.push({path: '/index'})
+        },
         check_phone() {
             let reg = /^1[3|4|5|7|8][0-9]{9}$/;
             if (reg.test(this.user.username)) {
                 this.user_show.phone = true
             } else {
                 this.user_show.phone = false
+            }
+        },
+        check_email() {
+            if (emailValid(this.user.username)) {
+                this.user_show.email = true
+            } else {
+                this.user_show.email = false
             }
         },
         check_pass() {
@@ -93,6 +111,7 @@ export default {
             const formData = Object.assign({}, data)
             sign_in(formData).then(response => {
                 if (response.code === 200) {
+                    localStorage.removeItem("user")
                     setToken(response.data.token)
                     ElMessage({
                         message: h('p', null, [
@@ -100,6 +119,12 @@ export default {
                         ]),
                     })
                     this.$router.push({path: '/index'})
+                } else {
+                    ElMessage({
+                        message: h('p', null, [
+                            h('a', {style: 'color: teal'}, '请输入正确的账号密码'),
+                        ]),
+                    })
                 }
             })
         },
@@ -155,6 +180,7 @@ export default {
     .sign-logo {
         position: fixed;
         top: 0 !important;
+        cursor: pointer;
         width: 100% !important;
         background: #ffffffde !important;
     }
@@ -228,6 +254,7 @@ export default {
 
 .logo {
     height: 40px;
+    cursor: pointer !important;
 }
 
 .sign-logo {

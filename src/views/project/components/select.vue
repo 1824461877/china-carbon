@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="select-box">
-            <img src="@/assets/clean-cooking-fuel-image2.avif"/>
+            <img src="@/assets/wom.jpg"/>
             <p>↑ 这些干净的煤球的生产由我们成员资助。</p>
             <div class="select-box-list">
                 <div class="select-box-info">

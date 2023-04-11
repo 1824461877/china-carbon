@@ -4,17 +4,17 @@
         <p>为投资者争取最大利益</p>
         <div class="stricture-box">
             <div class="stricture-box-item">
-                <img src="@/assets/transparency-2.avif"/>
+                <img src="@/assets/undraw_fingerprint_login_re_t71l.svg"/>
                 <h3>公开碳指标的持有账户尾号</h3>
                 <p>确保未在平台上重复持有</p>
             </div>
             <div class="stricture-box-item">
-                <img src="@/assets/transparency-1.avif"/>
+                <img src="@/assets/undraw_appreciate_it_re_yc8h.svg"/>
                 <h3>所公开所有碳指标唯一国际串码</h3>
                 <p>确保碳指标未被注销</p>
             </div>
             <div class="stricture-box-item">
-                <img src="@/assets/transparency-3.avif"/>
+                <img src="@/assets/undraw_photo_session_re_c0cp.svg"/>
                 <h3>公开碳指标国际抵消凭证</h3>
                 <p>让碳抵消行为全球看得见</p>
             </div>
@@ -71,7 +71,7 @@ export default {
 }
 
 .stricture-box img {
-    height: 70px;
+    height: 100px;
 }
 
 .stricture-box-item {

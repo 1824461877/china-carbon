@@ -26,5 +26,6 @@ export default {
     justify-content: space-between;
     padding: 1.5% 3%;
     border-top: 10px solid #49776f;
+    flex-wrap: wrap;
 }
 </style>

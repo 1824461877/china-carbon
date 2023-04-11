@@ -2,7 +2,7 @@
     <div class="sign-up">
         <div class="sign-up-box">
             <div class="sign-logo">
-                <img class="logo" src="@/assets/logo-black.png"/>
+                <img class="logo" @click="index()" src="@/assets/logo-black.png"/>
                 <div class="sign-up-tit">注册</div>
             </div>
             <div class="sign-up-box-body">
@@ -117,10 +117,13 @@ export default {
         }
     },
     methods: {
+        index() {
+            this.$router.push({path: '/index'})
+        },
         next() {
             let that = this
             let data = {
-                cell_phone_number: parseInt(this.user.cell_phone),
+                cell_phone_number: this.user.cell_phone,
                 password: this.user.password,
                 verification_code: this.user.verification_code,
             }
@@ -395,6 +398,7 @@ export default {
 
 .logo {
     height: 40px;
+    cursor: pointer;
 }
 
 .sign-logo {
