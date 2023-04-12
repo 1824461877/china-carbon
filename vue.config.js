@@ -1,11 +1,11 @@
-const port = process.env.port || process.env.npm_config_port || 9527
+const port = process.env.port || process.env.npm_config_port || 8080
 
 module.exports = {
   lintOnSave: false,
   runtimeCompiler: true,
   publicPath: '/',
   // 输出文件目录
-  outputDir: './dist',
+  outputDir: './carbon_front_dist',
   productionSourceMap: false,
   devServer: {
     port: port,

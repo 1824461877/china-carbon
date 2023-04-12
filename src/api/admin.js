@@ -51,6 +51,6 @@ export function admin_update_email(data) {
 
 export function verification_email_code(params) {
     return request({
-        url: "/admin/admin_email_verification_code", method: 'get', params: params,
+        url: "/admin_s/admin_email_verification_code", method: 'get', params: params,
     })
 }

@@ -6,6 +6,12 @@ export function sign_up(data) {
     })
 }
 
+export function sign_up_email(data) {
+    return request({
+        url: "/admin_s/admin_register_email", method: 'post', data: data,
+    })
+}
+
 export function sign_in(data) {
     return request({
         url: "/admin_s/admin_login_in", method: 'post', data: data,

@@ -14,27 +14,46 @@
                     <div class="sign-up-box-right-bg">
                         <ul class="sign-up-option" v-show="!show2">
                             <li :class="num===2?'':'sign-show'" @click="num=2">
-                                {{ si === 1 ? '手机号注册' : '输入手机号验证码' }}
+                                {{ si === 1 ? '邮箱注册' : '请输入邮箱验证码' }}
                             </li>
                         </ul>
                         <div v-show="!show">
                             <div class="sign-up-user">
-                                <p>手机号 | Cell-phone number</p>
-                                <input name="cell-phone" :class="user_show.phone?'':'err'" v-model="user.cell_phone"
-                                       @keyup="check_phone"
-                                       placeholder="请输入手机号" type="text"/>
-                                <p v-show="!user_show.phone" class="errs">** 您输入的手机号码格式错误</p>
+                                <p>邮箱 | mailbox</p>
+                                <input name="cell-phone" :class="email_show.email?'':'err'" v-model="email.email"
+                                       @keyup="check_email"
+                                       placeholder="请输入邮箱" type="text"/>
+                                <p v-show="!email_show.email" class="errs">** 您输入的邮箱格式错误</p>
                             </div>
                             <div class="sign-up-user">
                                 <p>设置密码 | Set Password</p>
-                                <el-input type="password" show-password :class="user_show.password?'':'err'"
-                                          v-model="user.password" placeholder="请设置你账号密码"
+                                <el-input type="password" show-password :class="email_show.password?'':'err'"
+                                          v-model="email.password" placeholder="请设置你账号密码"
                                           @keyup="check_pass"/>
-                                <p v-show="!user_show.password" class="errs">** {{ user_show.err_info }}</p>
+                                <p v-show="!email_show.password" class="errs">** {{ email_show.err_info }}</p>
                             </div>
                         </div>
+                        <!--                        <div v-show="!show">-->
+                        <!--                            <div class="sign-up-user">-->
+                        <!--                                <p>手机号 | Cell-phone number</p>-->
+                        <!--                                <input name="cell-phone" :class="user_show.phone?'':'err'" v-model="user.cell_phone"-->
+                        <!--                                       @keyup="check_phone"-->
+                        <!--                                       placeholder="请输入手机号" type="text"/>-->
+                        <!--                                <p v-show="!user_show.phone" class="errs">** 您输入的手机号码格式错误</p>-->
+                        <!--                            </div>-->
+                        <!--                            <div class="sign-up-user">-->
+                        <!--                                <p>设置密码 | Set Password</p>-->
+                        <!--                                <el-input type="password" show-password :class="user_show.password?'':'err'"-->
+                        <!--                                          v-model="user.password" placeholder="请设置你账号密码"-->
+                        <!--                                          @keyup="check_pass"/>-->
+                        <!--                                <p v-show="!user_show.password" class="errs">** {{ user_show.err_info }}</p>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                        <p class="s-des" v-show="show&&!show2">-->
+                        <!--                            请输入发送至 +86{{ filter_cell_phone }} 的 6位验证码-->
+                        <!--                        </p>-->
                         <p class="s-des" v-show="show&&!show2">
-                            请输入发送至 +86{{ filter_cell_phone }} 的 6位验证码
+                            请输入发送至 {{ email.email }} 的 6位验证码
                         </p>
                         <div class="row-center captcha_input_wrapper" v-show="show&&!show2">
                             <input
@@ -53,7 +72,7 @@
                         <p class="s-des" v-show="show&&!show2">
                             {{ count }} 秒后可重新获取验证码
                         </p>
-                        <div class="button-submit" @click="next()" v-show="show&&!show2">
+                        <div class="button-submit" @click="next2()" v-show="show&&!show2">
                             点击下一步
                         </div>
                         <p class="s-des" style="text-align: center;font-size: 14px" v-show="show&&!show2">
@@ -66,7 +85,10 @@
                             <p class="s-des">稍等一会儿，马上跳转到登录页面</p>
                         </div>
                         <div v-show="!show">
-                            <div class="button-submit" @click="get_verification_code()">
+                            <!--  <div class="button-submit" @click="get_verification_code()">-->
+                            <!--  获取验证码-->
+                            <!--   </div>-->
+                            <div class="button-submit" @click="get_email_verification_code(email.email)">
                                 获取验证码
                             </div>
                             <p class="f-sign-in" @click="sign_in()">用户登录</p>
@@ -79,10 +101,11 @@
 </template>
 
 <script>
-import {passwordValid} from "@/utils/pass.js"
-import {verification_code, sign_up} from "@/api/sign.js"
+import {emailValid, passwordValid} from "@/utils/pass.js"
+import {verification_code, sign_up, sign_up_email} from "@/api/sign.js"
 import {h} from 'vue'
 import {ElMessage} from 'element-plus'
+import {verification_email_code} from "@/api/admin";
 
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
@@ -94,14 +117,23 @@ export default {
             show2: false,
             si: 1,
             count: 0,
-            time: 60,
             user: {
                 cell_phone: "",
                 password: "",
                 verification_code: "",
             },
+            email: {
+                email: "",
+                password: "",
+                verification_code: "",
+            },
             user_show: {
                 phone: true,
+                password: true,
+                err_info: "",
+            },
+            email_show: {
+                email: true,
                 password: true,
                 err_info: "",
             },
@@ -119,6 +151,38 @@ export default {
     methods: {
         index() {
             this.$router.push({path: '/index'})
+        },
+        next2() {
+            console.log(this.email.verification_code)
+            let that = this
+            let data = {
+                email: this.email.email,
+                password: this.email.password,
+                verification_code: this.email.verification_code,
+            }
+            const formData = Object.assign({}, data)
+            sign_up_email(formData).then(response => {
+                if (response.code === 200) {
+                    that.show2 = true
+                    let times = setInterval(() => {
+                        that.$router.push({path: '/sign_in'})
+                        clearInterval(times);
+                    }, 1500)
+                } else if (response.code === 400) {
+                    that.show = false
+                    ElMessage({
+                        message: h('p', null, [
+                            h('a', {style: 'color: teal'}, '该邮箱号已经注册'),
+                        ]),
+                    })
+                } else if (response.code === 401) {
+                    ElMessage({
+                        message: h('p', null, [
+                            h('a', {style: 'color: teal'}, '请输入正确的验证码'),
+                        ]),
+                    })
+                }
+            })
         },
         next() {
             let that = this
@@ -157,13 +221,30 @@ export default {
             }
         },
         check_pass() {
-            let pv = passwordValid(this.user.password)
+            // let pv = passwordValid(this.user.password)
+            let pv = passwordValid(this.email.password)
             if (pv === "correct") {
-                this.user_show.password = true
+                this.email_show.password = true
             } else {
-                this.user_show.password = false
+                this.email_show.password = false
             }
-            this.user_show.err_info = pv
+            this.email_show.err_info = pv
+        },
+        get_email_verification_code(email) {
+            let that = this
+            if (email != null && email !== "") {
+                let query = {
+                    "email": email,
+                }
+                verification_email_code(query).then(response => {
+                    if (response.code === 200) {
+                        that.show = true
+                        that.si = 2
+                        that.verification(200)
+                        // that.filter_cell_phone = that.phoneFilter(that.user.cell_phone)
+                    }
+                })
+            }
         },
         get_verification_code() {
             let that = this
@@ -176,11 +257,18 @@ export default {
                         if (response.code === 200) {
                             that.show = true
                             that.si = 2
-                            that.verification()
+                            that.verification(60)
                             that.filter_cell_phone = that.phoneFilter(that.user.cell_phone)
                         }
                     })
                 }
+            }
+        },
+        check_email() {
+            if (emailValid(this.email.email)) {
+                this.email_show.email = true
+            } else {
+                this.email_show.email = false
             }
         },
         phoneFilter(val) {
@@ -190,8 +278,8 @@ export default {
         sign_up() {
 
         },
-        verification() {
-            this.count = this.time
+        verification(tim) {
+            this.count = tim
             var times = setInterval(() => {
                 this.count--; //递减
                 if (this.count <= 0) {
@@ -228,13 +316,15 @@ export default {
         // 输入框相互联动
         inputFinash(index) {
             let val = this.captchas[index].num;
+            var that = this
             this.activeInput = val ? index + 1 : index - 1;
             let dom = document.getElementById("captcha" + this.activeInput);
             if (dom) dom.focus();
             if (index === this.captchas.length - 1) {
                 let code = this.captchas.map((x) => x.num).join("");
                 if (code.length === 6) {
-                    this.user.verification_code = code.toString()
+                    that.user.verification_code = code.toString()
+                    that.email.verification_code = code.toString()
                 }
             }
         }

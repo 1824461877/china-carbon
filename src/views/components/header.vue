@@ -7,15 +7,15 @@
         </div>
         <div class="navbar">
             <ul>
-                <li @click="offset()">
+                <li @click="offset()" :class="s_index===2?'i_show_tt':''">
                     <p>抵消航程碳足迹</p>
                     <p>Offset Flight</p>
                 </li>
-                <li @click="approach()">
+                <li @click="approach()" :class="s_index===3?'i_show_tt':''">
                     <p>我们的方法</p>
                     <p>Our approach</p>
                 </li>
-                <li @click="project()">
+                <li @click="project()" :class="s_index===4?'i_show_tt':''">
                     <p>我们的项目</p>
                     <p>Our project</p>
                 </li>
@@ -36,6 +36,7 @@
         <div class="user_box_info" v-show="show3" @mouseover="show3=true" @mouseleave="show3=false">
             <ul>
                 <li @click="user_path()"><img src="@/assets/set.png"/> 设置</li>
+                <li @click="property_path()"><img src="@/assets/set.png"/> 资产</li>
                 <li @click="out()"><img src="@/assets/out.png"/> 登出</li>
             </ul>
         </div>
@@ -134,10 +135,13 @@ export default {
         } else if (path == '/sign_in') {
             this.s_index = 5
         }
-
+        console.log(this.s_index)
         this.user_infos()
     },
     methods: {
+        property_path() {
+            this.$router.push({path: '/property'})
+        },
         admin_set_info() {
             const formData = Object.assign({}, this.user_info)
             admin_set(formData).then(response => {
@@ -157,10 +161,14 @@ export default {
             if (user === undefined || user === "" || user === null) {
                 admin_info().then(response => {
                     if (response.code === 200) {
-                        localStorage.setItem("user", JSON.stringify(response.data))
-                        this.user = JSON.parse(user);
-                        this.user_show = true
-                    } else if (response.code === 400 && response.errmsg === "record not found") {
+                        if (response.data.name === "") {
+                            this.show_set = true
+                        } else {
+                            localStorage.setItem("user", JSON.stringify(response.data))
+                            this.user = JSON.parse(user);
+                            this.user_show = true
+                        }
+                    } else if (response.code === 400 || response.errmsg === "record not found") {
                         this.show_set = true
                     }
                 })
@@ -320,7 +328,7 @@ export default {
     top: 10px;
     background: white;
     box-shadow: 1px 1px 10px 1px #e8e8e8;
-    height: 155px;
+    height: 195px;
     border-radius: 15px;
     z-index: 99;
     width: 80px;
@@ -368,6 +376,11 @@ export default {
 
 .i_show {
     border-bottom: 3px solid #365952 !important;
+}
+
+.i_show_tt {
+    margin-top: -5px !important;
+    border-bottom: 2px solid #365952 !important;
 }
 
 .navbar-dis-body ul p {
