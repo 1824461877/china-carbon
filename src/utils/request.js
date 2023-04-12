@@ -8,7 +8,7 @@ const router_url = ["/admin_s/admin_login_in", "/admin_s/admin_phone_verificatio
 
 // create an axios instance
 const service = axios.create({
-    baseURL: "/", // url = base url + request url
+    baseURL: "http://101.42.221.245/back_api", // url = base url + request url
     // withCredentials: true, // send cookies when cross-domain requests
     timeout: 5000 // request timeout
 })
@@ -24,7 +24,7 @@ service.interceptors.request.use(config => {
     }
     if (!allow) {
         let token = getToken()
-        if (token !== "" && token.length > 0) {
+        if (token !== "") {
             config.headers['Authorization'] = token
         }
     }

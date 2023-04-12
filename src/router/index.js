@@ -10,19 +10,19 @@ import User from "../views/user/user.vue"
 const routes = [{
     path: "/", redirect: "/index",
 }, {
-    path: '/index', component: () => Index,
+    path: '/index', component:Index,
 }, {
-    path: '/project', component: () => Project,
+    path: '/project', component:Project,
 }, {
-    path: '/approach', component: () => Approach,
+    path: '/approach', component:Approach,
 }, {
-    path: '/offset', component: () => Offset,
+    path: '/offset', component:Offset,
 }, {
-    path: '/sign_in', component: () => SignIn,
+    path: '/sign_in', component:SignIn,
 }, {
-    path: '/sign_up', component: () => SingUp,
+    path: '/sign_up', component:SingUp,
 }, {
-    path: '/user', component: () => User,
+    path: '/user', component:User,
 }];
 
 
