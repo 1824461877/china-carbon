@@ -9,11 +9,11 @@ module.exports = {
   productionSourceMap: false,
   devServer: {
     port: port,
-    host: '127.0.0.1',
+    host: '0.0.0.0',
     open: true,
     proxy: {
-      "/": {
-        target: "http://127.0.0.1:8880",
+      "/back_api": {
+        target: "/",
         changeOrigin: true,
         ws: false,
         pathRewrite: {
