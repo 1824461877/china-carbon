@@ -5,44 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44c20de5-1921-46b3-9b36-3cacd65984b1" name="Changes" comment="update mdoe">
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/css/app.07c9e0a0.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/css/chunk-vendors.60c37cda.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/Forest-grass-fog-dawn.8ae12e45.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/affordable_project.956a0584.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/buen-jardin-detailed-map.2507541d.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/clean-cooking-fuel-image3.95d0d130.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/diversified_project.467f7b58.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/future-forest.7dc77625.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/gg.d9e32c15.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/ggt.13d4aa2c.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/led.75b9fb94.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/logo-black.3220faee.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/manage_project.5f8a3496.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/mjl.e0c14cf1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/mt.bd72c087.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/optimize_project.597f478b.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/out.b5261fbf.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/pig.a17bc02a.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/project-1.6b024bb2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/tou.e8c00bae.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/undraw_Personal_info_re_ur1n.0943ee7e.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/undraw_Team_up_re_84ok.b8687ff4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/undraw_appreciate_it_re_yc8h.26170e50.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/undraw_augmented_reality_re_f0qd.18029433.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/undraw_counting_stars_re_smvv.58bf5a0b.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/undraw_drag_re_shc0.ee841472.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/undraw_empty_street_re_atjq.64465893.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/undraw_fingerprint_login_re_t71l.240afa2c.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/undraw_futuristic_interface_re_0cm6.fa53b75c.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/undraw_photo_session_re_c0cp.8d9acc4a.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/undraw_showing_support_re_5f2v.ae7e6918.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/undraw_woman_ffrd.9c293f8c.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/img/wom.1771f8a8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/js/app.f3cb6266.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/carbon_front_dist/js/chunk-vendors.0f81e112.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/request.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +64,7 @@
       <updated>1681312030022</updated>
       <workItem from="1681312032024" duration="2155000" />
       <workItem from="1681817816403" duration="23381000" />
-      <workItem from="1681866382701" duration="852000" />
+      <workItem from="1681866382701" duration="930000" />
     </task>
     <task id="LOCAL-00001" summary="update mdoe">
       <created>1681866029796</created>
