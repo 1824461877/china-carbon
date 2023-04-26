@@ -1,4 +1,4 @@
-import {createRouter, createWebHashHistory} from 'vue-router';
+import {createRouter, createWebHistory} from 'vue-router';
 import Index from "../views/index/index.vue"
 import Project from "../views/project/project.vue"
 import Approach from "../views/approach/approach.vue"
@@ -30,8 +30,8 @@ const routes = [{
 
 
 const router = createRouter({
-    history: createWebHashHistory(),  // hash路由模式
-    // history: createWebHistory(),  // history路由模式
+    // history: createWebHashHistory(),  // hash路由模式
+    history: createWebHistory(),  // history路由模式
     routes
 });
 

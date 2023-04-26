@@ -9,12 +9,12 @@
                     <template #default="props">
                         <div class="exp-box">
                             <div class="exp-info">
-                                <h2 style="padding: 0">INFORMATION</h2>
+                                <h2 style="padding: 0">资产信息</h2>
                                 <p>CID: <span>{{ props.row.cid }}</span></p>
-                                <p>ASSET CODE: <span>{{ props.row.asset_code }}</span></p>
-                                <p>PROJECT ISSUED TO: <span>{{ props.row.pi }}</span></p>
-                                <p>SERIAL NUMBER: <span>{{ props.row.s_num }}</span></p>
-                                <p>CREDITS: <span>{{ props.row.credits }}</span></p>
+                                <p>资产代码: <span>{{ props.row.asset_code }}</span></p>
+                                <p>项目签发: <span>{{ props.row.pi }}</span></p>
+                                <p>序列号: <span>{{ props.row.s_num }}</span></p>
+                                <p>credits: <span>{{ props.row.credits }}</span></p>
                             </div>
                             <div :id="'chartLineBox' + props.row.cid" style="width: 95%;height: 50vh;"></div>
                         </div>
@@ -23,11 +23,11 @@
                 <el-table-column prop="cid" width="120" label="CID"/>
                 <el-table-column
                         prop="hold"
-                        label="STATUS"
+                        label="挂牌"
                         width="100"
                         :filters="[
-                            { text: 'YES', value: 'YES' },
-                            { text: 'NO', value: 'NO' },
+                            { text: '是', value: 'YES' },
+                            { text: '否', value: 'NO' },
                           ]"
                         :filter-method="filterTag"
                         filter-placement="bottom-end">
@@ -36,12 +36,12 @@
                         </el-tag>
                     </template>
                 </el-table-column>
-                <el-table-column prop="asset_code" width="150" label="ASSET CODE"/>
-                <el-table-column prop="pi" width="300" label="PROJECT ISSUED TO"/>
-                <el-table-column prop="s_num" width="350" label="SERIAL NUMBER"/>
-                <el-table-column prop=i_date width="150" label="ISSUANCE DATE"/>
-                <el-table-column prop=credits width="100" label="CREDITS"/>
-                <el-table-column fixed="right" width="80" label="OPERATIONS">
+                <el-table-column prop="asset_code" width="150" label="资产代码"/>
+                <el-table-column prop="pi" width="300" label="项目签发"/>
+                <el-table-column prop="s_num" width="350" label="序列号"/>
+                <el-table-column prop=i_date width="150" label="发行日期"/>
+                <el-table-column prop=credits width="100" label="credits"/>
+                <el-table-column fixed="right" width="80" label="操作">
                     <template #default>
                         <div class="d-list">
                             <div link type="primary">转入</div>
@@ -236,7 +236,7 @@ export default {
             var option = {
                 title: {
                     left: 'left',
-                    text: 'FLUCTUATE'
+                    text: '资产浮动'
                 },
                 xAxis: {
                     type: 'time',
@@ -269,65 +269,65 @@ export default {
             tableData: [
                 {
                     cid: 'C23451',
-                    asset_code: 'U71HEzclKpgLS',
+                    asset_code: '81611-821440',
                     pi: 'Houji Solar Cooker Project (GS7604)',
-                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-85977-85978',
-                    i_date: 'Jul 07, 2021',
-                    credits: "2",
+                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-81611-821440',
+                    i_date: 'Jun 07, 2021',
+                    credits: "739,829",
                     tag: 'YES'
                 },
                 {
                     cid: 'C77341',
-                    asset_code: '9sMWpXZKhZG',
+                    asset_code: '87620-831440',
                     pi: 'Houji Solar Cooker Project (GS7604)',
-                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-85977-85978',
-                    i_date: 'Jun 21, 2021',
-                    credits: "2",
+                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-87620-831440',
+                    i_date: 'Jul 21, 2021',
+                    credits: "743,820",
                     tag: 'NO'
                 },
                 {
-                    cid: 'C61032',
-                    asset_code: 'ZGpVmRaO71H',
+                    cid: 'C79032',
+                    asset_code: '89977-834440',
                     pi: 'Houji Solar Cooker Project (GS7604)',
-                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-85977-85978',
-                    i_date: 'Feb 02, 2021',
-                    credits: "2",
+                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-89977-834440',
+                    i_date: 'Feb 02, 2022',
+                    credits: "744,463",
                     tag: 'NO'
                 },
                 {
-                    cid: 'C89978',
-                    asset_code: 'Qd8rN8p9sMSJ',
+                    cid: 'C80978',
+                    asset_code: '91821-847230',
                     pi: 'Houji Solar Cooker Project (GS7604)',
-                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-85977-85978',
+                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-85977-62934',
                     i_date: 'May 11, 2022',
-                    credits: "2",
+                    credits: "755,409",
                     tag: 'YES'
                 },
                 {
                     cid: 'C87178',
-                    asset_code: 'VjfSDAS9sMSJ',
+                    asset_code: '93966-855132',
                     pi: 'Houji Solar Cooker Project (GS7604)',
-                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-85977-85978',
-                    i_date: 'May 23, 2021',
-                    credits: "2",
+                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-93966-855132',
+                    i_date: 'May 23, 2022',
+                    credits: "761,166",
                     tag: 'YES'
                 },
                 {
-                    cid: 'C99323',
-                    asset_code: 'Y21rN8p9sDSa',
+                    cid: 'C91323',
+                    asset_code: '94123-875318',
                     pi: 'Houji Solar Cooker Project (GS7604)',
-                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-85977-85978',
-                    i_date: 'Feb 19, 2021',
-                    credits: "2",
+                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-94123-875318',
+                    i_date: 'Feb 19, 2023',
+                    credits: "781,195",
                     tag: 'YES'
                 },
                 {
-                    cid: 'C17278',
-                    asset_code: 'Wd3rN8p9SDa',
+                    cid: 'C94278',
+                    asset_code: '95651-905318',
                     pi: 'Houji Solar Cooker Project (GS7604)',
-                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-85977-85978',
-                    i_date: 'Jul 11, 2022',
-                    credits: "2",
+                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-95651-905318',
+                    i_date: 'Mar 11, 2023',
+                    credits: "809,667",
                     tag: 'YES'
                 }
             ]

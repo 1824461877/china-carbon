@@ -31,8 +31,8 @@
                 <div class="contribute-box-left">
                     捐助额:
                 </div>
-                <div style="margin-top: 5px">
-                    HKD:
+                <div >
+                    人民币:
                     <el-input-number
                             v-model="num"
                             :min="1"
