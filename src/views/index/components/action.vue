@@ -53,6 +53,7 @@ export default {
 
 <style scoped>
 .action {
+    color: #323232;
     position: absolute;
     top: 0;
     padding-top: 100px;

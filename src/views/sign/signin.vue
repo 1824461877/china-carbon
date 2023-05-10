@@ -11,21 +11,60 @@
                     <div class="sign-in-box-tit">- SIGN IN -</div>
                 </div>
                 <div class="sign-in-box-right">
-                    <div class="sign-in-box-right-bg">
+                    <div class="sign-yzm" v-if="show">
+                        <ul class="sign-in-option">
+                            <li :class="num===1?'':'sign-show'" @click="num=1;user.em_username=''">登录验证码验证</li>
+                        </ul>
+                        <div class="adj-info">
+                            <p>一条包含验证码的信息已发送至你的 手机 {{ phone }}</p>
+                            <p>请核对识别码后输入验证码以继续</p>
+                        </div>
+                        <div class="row-center captcha_input_wrapper">
+                            <input
+                                    v-for="(item,index) in captchas"
+                                    :key="index"
+                                    v-model="item.num"
+                                    :id="'captcha'+index"
+                                    @input="inputFinash(index)"
+                                    @focus="adjust(index)"
+                                    @keydown="inputDirection(index)"
+                                    class="captcha_input_box row-center"
+                                    :class="perr?'captcha_input_box_err':''"
+                                    type="tel"
+                                    maxlength="1"
+                            />
+                        </div>
+                        <div class="mode">
+                            <p class="f-password" @click="sign_in_path()">点击返回登录页面</p>
+                            <p class="f-sign-up" @click="get_verification_code(this.phone)">没有收到验证码？请点击</p>
+                        </div>
+                    </div>
+                    <div class="sign-in-box-right-bg" v-if="!show">
                         <ul class="sign-in-option">
                             <li :class="num===1?'':'sign-show'" @click="num=1;user.username=''">手机号登录</li>
                             <li :class="num===2?'':'sign-show'" @click="num=2;user.username=''">邮箱登录</li>
                         </ul>
                         <div class="sign-in-user" v-show="num===1">
                             <p>手机号 | Cell-phone number</p>
-                            <input name="cell-phone" :class="user_show.phone?'':'err'" v-model="user.username"
-                                   @keyup="check_phone"
-                                   placeholder="请输入手机号" type="text"/>
-                            <p v-show="!user_show.phone" class="errs">** 您输入的手机号码格式错误</p>
+                            <MazPhoneNumberInput
+                                :class="user_show.phone?'':'err'"
+                                v-model="user.username"
+                                :preferred-countries="['FR', 'BE', 'DE', 'US', 'GB']"
+                                :noExample=true
+                                :translations= "{
+                                    countrySelector: {
+                                        placeholder: '',
+                                        error: 'Choose country',
+                                    }
+                                  }"
+                            />
+<!--                            <input name="cell-phone" :class="user_show.phone?'':'err'" v-model="user.username"-->
+<!--                                   @keyup="check_phone"-->
+<!--                                   placeholder="请输入手机号" type="text"/>-->
                         </div>
                         <div class="sign-in-user" v-show="num===2">
                             <p>邮箱 | Email</p>
-                            <input name="cell-phone" :class="user_show.email?'':'err'" v-model="user.username"
+                            <input name="cell-phone" :class="user_show.email?'':'err'" v-model="user.em_username"
                                    @keyup="check_email"
                                    placeholder="请输入邮箱" type="text"/>
                             <p v-show="!user_show.email" class="errs">** 您输入的邮箱格式错误</p>
@@ -37,11 +76,11 @@
                                       @keyup="check_pass"/>
                             <p v-show="!user_show.password" class="errs">** {{ user_show.err_info }}</p>
                         </div>
-                        <div class="button-submit" @click="sign_in()">
+                        <div class="button-submit" @click="sign_in(0)">
                             登录
                         </div>
                         <div class="mode">
-                            <p class="f-password">忘记密码</p>
+                            <p class="f-password" @click="password_new()">忘记密码</p>
                             <p class="f-sign-up" @click="sign_up()">用户注册</p>
                         </div>
                     </div>
@@ -52,43 +91,61 @@
 </template>
 
 <script>
-import {sign_in} from "@/api/sign";
+import MazPhoneNumberInput from 'maz-ui/components/MazPhoneNumberInput'
+import {sign_in, verification_code} from "@/api/sign";
 import {setToken} from '@/utils/auth'
-import {passwordValid,emailValid} from "@/utils/pass";
+import {passwordValid, emailValid} from "@/utils/pass";
 import {ElMessage} from "element-plus";
 import {h} from "vue";
 
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name: "sign-in",
+    components: {
+        MazPhoneNumberInput:MazPhoneNumberInput,
+    },
     data() {
         return {
+            value:"",
+            show: false,
             num: 1,
             user: {
                 username: "",
+                em_username: "",
                 password: "",
             },
+            phone: "",
             user_show: {
                 phone: true,
                 email: true,
                 password: true,
             },
+            verification_code:"",
+            captchas: [
+                {num: ""},
+                {num: ""},
+                {num: ""},
+                {num: ""},
+                {num: ""},
+                {num: ""},
+            ],
         }
     },
     methods: {
         index() {
             this.$router.push({path: '/index'})
         },
-        check_phone() {
-            let reg = /^1[3|4|5|7|8][0-9]{9}$/;
-            if (reg.test(this.user.username)) {
-                this.user_show.phone = true
-            } else {
-                this.user_show.phone = false
-            }
+        sign_up() {
+            this.$router.push({path: '/sign_up'})
+        },
+        sign_in_path() {
+            this.$router.push({path: '/sign_in'})
+        },
+        password_new() {
+            this.$router.push({path: '/password/new'})
         },
         check_email() {
-            if (emailValid(this.user.username)) {
+            if (emailValid(this.user.em_username)) {
                 this.user_show.email = true
             } else {
                 this.user_show.email = false
@@ -103,11 +160,30 @@ export default {
             }
             this.user_show.err_info = pv
         },
-        sign_in() {
-            let data = {
-                username: this.user.username,
-                password: this.user.password,
+        sign_in(index) {
+            let data;
+            let username;
+            if (this.num === 1) {
+                username = this.user.username
+            } else if(this.num === 2) {
+                username = this.user.em_username
+            } else {
+                return
             }
+
+            if (index === 0) {
+                data = {
+                    username: username,
+                    password: this.user.password,
+                }
+            } else if (index === 1) {
+                data = {
+                    username: username,
+                    password: this.user.password,
+                    verification_code: this.verification_code,
+                }
+            }
+
             const formData = Object.assign({}, data)
             sign_in(formData).then(response => {
                 if (response.code === 200) {
@@ -119,17 +195,86 @@ export default {
                         ]),
                     })
                     this.$router.push({path: '/index'})
+                } else if (response.code === 9993) {
+                    let result = response.errmsg
+                    this.phone = result
+                    this.get_verification_code(result)
+                    this.show = true
                 } else {
-                    ElMessage({
-                        message: h('p', null, [
-                            h('a', {style: 'color: teal'}, '请输入正确的账号密码'),
-                        ]),
-                    })
+                    if (index===1) {
+                        ElMessage({
+                            message: h('p', null, [
+                                h('a', {style: 'color: teal'}, '请输入正确的验证码！'),
+                            ]),
+                        })
+                    } else {
+                        ElMessage({
+                            message: h('p', null, [
+                                h('a', {style: 'color: teal'}, '请输入正确的账号密码！'),
+                            ]),
+                        })
+                    }
+
                 }
             })
         },
-        sign_up() {
-            this.$router.push({path: '/sign_up'})
+        get_verification_code(phone) {
+            if (phone !== "") {
+                let query = {
+                    "cell_phone": phone,
+                }
+                verification_code(query).then(response => {
+                    if (response.code === 200) {
+                        ElMessage({
+                            message: h('p', null, [
+                                h('a', {style: 'color: teal'}, '发送验证码成功！'),
+                            ]),
+                        })
+                    } else {
+                        ElMessage({
+                            message: h('p', null, [
+                                h('a', {style: 'color: teal'}, '您频繁获取验证码，请您稍后再获取验证码！'),
+                            ]),
+                        })
+                    }
+                })
+            }
+        },
+        adjust(index) {
+            let dom = document.getElementById("captcha" + this.activeInput);
+            if (index !== this.activeInput && dom) {
+                dom.focus();
+            }
+        },
+        inputDirection(index) {
+            let val = this.captchas[index].num;
+            // 回退键处理
+            if (event.keyCode === 8 && val === "") {
+                // 重新校准
+                let dom = document.getElementById("captcha" + (index - 1));
+                this.activeInput = index - 1;
+                if (dom) dom.focus();
+            }
+            if (event.keyCode !== 8 && val !== "") {
+                let dom = document.getElementById("captcha" + (index + 1));
+                this.activeInput = index + 1;
+                if (dom) dom.focus();
+            }
+        },
+        // 输入框相互联动
+        inputFinash(index) {
+            this.perr = false
+            let val = this.captchas[index].num;
+            this.activeInput = val ? index + 1 : index - 1;
+            let dom = document.getElementById("captcha" + this.activeInput);
+            if (dom) dom.focus();
+            if (index === this.captchas.length - 1) {
+                let code = this.captchas.map((x) => x.num).join("");
+                if (code.length === 6) {
+                    this.verification_code = code
+                    this.sign_in(1)
+                }
+            }
         }
     }
 }
@@ -149,11 +294,10 @@ export default {
 }
 
 .sign-in-box-body {
+    height: 490px;
+    width: 780px;
     display: flex;
-    height: 100%;
-    width: 100%;
     flex-wrap: wrap;
-    min-width: 600px;
 }
 
 .sign-in-box-left {
@@ -162,7 +306,12 @@ export default {
     text-align: center;
 }
 
-@media screen and (max-width: 700px) {
+.adj-info {
+    padding: 20px 40px 10px 50px;
+    font-size: 14px;
+}
+
+@media screen and (max-width: 750px) {
     .sign-in-box-left {
         width: 100% !important;
         text-align: center;
@@ -203,14 +352,15 @@ export default {
     }
 
     .sign-in-box-body {
+        height: auto !important;
+        width: auto !important;
         min-width: auto !important;
     }
 }
 
 
 .sign-in-box-right {
-    background: #23403b;
-    height: 100%;
+    background: #f7f7f7;
     width: 50%;
     display: flex;
     justify-content: center;
@@ -249,6 +399,7 @@ export default {
     text-align: center;
     color: #284641;
     margin-top: 45px;
+    margin-bottom: 55px;
     font-weight: 600;
 }
 
@@ -267,7 +418,6 @@ export default {
 .sign-in-box {
     background: white;
     box-shadow: 1px 1px 10px 1px #e3e3e3;
-    width: 52vw;
     min-width: 600px;
 }
 
@@ -278,7 +428,7 @@ export default {
     cursor: pointer;
     display: flex;
     font-size: 19px;
-    margin: 50px 0 0 50px;
+    margin: 20px 0 0 50px;
 }
 
 .button-submit {
@@ -296,10 +446,26 @@ export default {
 }
 
 .sign-in-box-right-bg {
-    height: 98%;
     width: 100%;
     background: #f7f7f7;
-    padding-bottom: 35px;
+}
+
+.sign-yzm {
+    width: 100%;
+    background: #f7f7f7;
+}
+
+
+.sign-yzm .mode {
+    margin-top: 20px;
+    margin-bottom: 60px;
+    flex-direction: column;
+    align-items: baseline;
+    margin-left: 60px;
+}
+
+.sign-yzm .mode p {
+    margin: 5px 0;
 }
 
 .sign-in-user {
@@ -310,7 +476,6 @@ export default {
 }
 
 .sign-in-user input {
-    width: 90%;
     padding: 13px;
     font-size: 17px;
     border: none;
@@ -330,6 +495,41 @@ export default {
     font-size: 12px;
     color: #d14b4b;
     margin-bottom: -10px;
+    max-width: 320px;
+}
+
+.row-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.adj-info {
+    color: #40485b;
+    font-weight: 600;
+}
+
+.captcha_input_wrapper {
+    width: 100%;
+}
+
+.captcha_input_box {
+    width: 2.1vw;
+    min-width: 20px;
+    min-height: 33px;
+    height: 3.0vw;
+    margin-right: 0.3vw;
+    border-radius: 4px;
+    border: 2px solid #23403b;
+    font-size: 15px;
+    text-align: center;
+    color: #23403b !important;
+}
+
+.captcha_input_box:focus-visible {
+    background: #5a8c8347;
 }
 </style>
 
@@ -350,5 +550,29 @@ export default {
 
 .sign-in .el-input__suffix-inner {
     margin-right: 8px;
+}
+.m-select-list {
+    background: white !important;
+}
+
+.m-input-wrapper.--default-border{
+    outline: none !important;
+    border: none !important;
+    border-bottom: 2px solid #21403b !important;
+}
+
+.maz-border-primary {
+    outline: none !important;
+    border: none !important;
+    border-bottom: 2px solid #21403b !important;
+}
+
+.m-phone-number-input__country-flag {
+    bottom: 18px !important;
+}
+
+.m-input-wrapper {
+    border: none !important;
+    border-bottom: 2px solid #21403b !important;
 }
 </style>

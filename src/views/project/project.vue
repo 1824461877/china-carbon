@@ -202,6 +202,7 @@ export default {
 
 <style scoped>
 .project {
+    color: #323232;
     padding: 180px 5% 0 5%;
     text-align: center;
     animation: project-show 0.3s;

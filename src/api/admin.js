@@ -54,3 +54,16 @@ export function verification_email_code(params) {
         url: "/admin_s/admin_email_verification_code", method: 'get', params: params,
     })
 }
+
+export function user_registration_status(params) {
+    return request({
+        url: "/admin_s/admin_user_registration_status", method: 'get', params: params,
+    })
+}
+
+
+export function verification_update_password(data) {
+    return request({
+        url: "/admin_s/admin_verification_update_password", method: 'post', data: data,
+    })
+}

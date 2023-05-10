@@ -55,6 +55,7 @@ export default {
 
 <style scoped>
 .common {
+    color: #323232;
     width: 100%;
     background: white;
     padding: 30px 0 150px 0;
@@ -103,8 +104,14 @@ export default {
     width: 120px;
     padding: 15px;
     margin: 30px auto;
+    cursor: pointer;
     font-weight: 600;
+    transition: transform 0.2s;
     color: white;
+}
+
+.common-button:hover {
+    transform: scale(1.1, 1.1);
 }
 
 @media screen and (max-width: 750px) {

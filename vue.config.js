@@ -12,8 +12,8 @@ module.exports = {
     host: '0.0.0.0',
     open: true,
     proxy: {
-      "/back_api": {
-        target: "/",
+      "/": {
+        target: "http://127.0.0.1:8880",
         changeOrigin: true,
         ws: false,
         pathRewrite: {

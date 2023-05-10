@@ -13,8 +13,11 @@
     "echarts": "^5.4.2",
     "element-plus": "^2.3.1",
     "js-cookie": "^3.0.1",
+    "libphonenumber-js": "^1.10.28",
+    "maz-ui": "^3.9.0",
     "postcss-import": "^15.1.0",
     "vue": "^3.2.13",
+    "vue-country-code-selector": "^1.0.7",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {

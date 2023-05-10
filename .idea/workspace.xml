@@ -5,7 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44c20de5-1921-46b3-9b36-3cacd65984b1" name="Changes" comment="update mdoe">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/approach/approach.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/approach/approach.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/bottom.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/bottom.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/index/components/action.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/index/components/action.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/index/components/common.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/index/components/common.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/index/components/stricture.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/index/components/stricture.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/project/components/select.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/project/components/select.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/project/project.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/project/project.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/property/property.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/property/property.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/sign/password_new.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/sign/password_new.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/sign/signin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/sign/signin.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/sign/signup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/sign/signup.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/user/user.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/user/user.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +55,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/project/china-carbon/public&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/project/china-carbon/src/assets&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -48,6 +68,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\project\china-carbon\src\assets" />
       <recent name="C:\project\china-carbon\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -65,6 +86,17 @@
       <workItem from="1681312032024" duration="2155000" />
       <workItem from="1681817816403" duration="23381000" />
       <workItem from="1681866382701" duration="930000" />
+      <workItem from="1682514358572" duration="2367000" />
+      <workItem from="1682608470853" duration="11546000" />
+      <workItem from="1682694010217" duration="6408000" />
+      <workItem from="1682780339660" duration="36000" />
+      <workItem from="1682780504246" duration="16299000" />
+      <workItem from="1683095208041" duration="16374000" />
+      <workItem from="1683184681914" duration="493000" />
+      <workItem from="1683203344228" duration="2986000" />
+      <workItem from="1683218053023" duration="124000" />
+      <workItem from="1683249095150" duration="5819000" />
+      <workItem from="1683650454483" duration="5683000" />
     </task>
     <task id="LOCAL-00001" summary="update mdoe">
       <created>1681866029796</created>

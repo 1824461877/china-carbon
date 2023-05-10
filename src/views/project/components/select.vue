@@ -52,7 +52,7 @@
         </div>
         <div class="select-box">
             <img src="@/assets/wom.jpg"/>
-            <p>↑ 这些干净的煤球的生产由我们成员资助。</p>
+            <p>↑ 这些整齐排列的木头。</p>
             <div class="select-box-list">
                 <div class="select-box-info">
                     <h1>超出商业行为的额外性</h1>
@@ -124,7 +124,7 @@ export default {
 
 <style scoped>
 .select {
-    padding: 130px;
+    padding: 130px 80px;
 }
 
 .select-des {
@@ -176,6 +176,7 @@ export default {
 
 .common-button {
     background: #365952;
+    cursor: pointer;
     width: 118px;
     padding: 15px;
     margin: 30px auto;

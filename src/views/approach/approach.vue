@@ -41,6 +41,7 @@ export default {
 
 <style scoped>
 .approach {
+    color: #323232;
     animation: approach-show 0.3s;
     animation-fill-mode: forwards;
 }

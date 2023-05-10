@@ -40,7 +40,12 @@ export default {
     z-index: 99;
     position: relative;
     padding: 40px 0 120px 0;
+    cursor: pointer;
     color: white;
+}
+
+.stricture-box-item:hover {
+    transform: scale(1.1, 1.1);
 }
 
 @media screen and (max-width: 750px) {
@@ -75,7 +80,8 @@ export default {
 }
 
 .stricture-box-item {
-    margin: 0 50px;
+    margin: 0 65px;
     max-width: 300px;
+    transition: transform 0.2s;
 }
 </style>

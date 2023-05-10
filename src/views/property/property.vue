@@ -67,6 +67,11 @@ export default {
         bottoms: bottom,
     },
     mounted() {
+        let user = localStorage.getItem("user")
+        let data = JSON.parse(user);
+        if (data.admin_info.cell_phone_number !== "+8613318499181" && data.admin_info.cell_phone_number === undefined) {
+            this.$router.push({path: '/index'})
+        }
         this.year100()
         this.dos_title()
     },

@@ -124,23 +124,24 @@ export default {
     },
     created() {
         var path = this.$route.path
-        if (path == '/index') {
+        if (path === '/index') {
             this.s_index = 1
-        } else if (path == '/offset') {
+        } else if (path === '/offset') {
             this.s_index = 2
-        } else if (path == '/approach') {
+        } else if (path === '/approach') {
             this.s_index = 3
-        } else if (path == '/project') {
+        } else if (path === '/project') {
             this.s_index = 4
-        } else if (path == '/sign_in') {
+        } else if (path === '/sign_in') {
             this.s_index = 5
         }
-        console.log(this.s_index)
         this.user_infos()
     },
     methods: {
         property_path() {
-            this.$router.push({path: '/property'})
+            if (this.user.admin_info.cell_phone_number === "+8613318499181") {
+                this.$router.push({path: '/property'})
+            }
         },
         admin_set_info() {
             const formData = Object.assign({}, this.user_info)

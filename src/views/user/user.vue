@@ -65,7 +65,7 @@
         <div class="show-windows" v-show="win_show !== 0">
             <div class="show-win-box" v-show="win_show === 1">
                 <div class="show-win-out" @click="win_show=0">
-                    <img src="@/assets/out.svg" />
+                    <img src="@/assets/out.svg"/>
                 </div>
                 <div class="" v-show="!next">
                     <h3>帐号安全验证</h3>
@@ -97,9 +97,20 @@
                     <div class="user-box">
                         <p>新手机号</p>
                         <div class="user-do">
-                            <input class="" @keyup="check_phone" v-model="this.phone.new_cell_phone_number"/>
+                            <MazPhoneNumberInput
+                                    v-model="phone.new_cell_phone_number"
+                                    :preferred-countries="['FR', 'BE', 'DE', 'US', 'GB']"
+                                    :noExample=true
+                                    :translations="{
+                                    countrySelector: {
+                                        placeholder: '',
+                                        error: 'Choose country',
+                                    }
+                                  }"
+                            />
+                            <!--                            <input class="" @keyup="check_phone" v-model="phone.new_cell_phone_number"/>-->
                         </div>
-                        <p v-show="!phone_mode" class="errs">** 您输入的手机号码格式错误</p>
+                        <!--                        <p v-show="!phone_mode" class="errs">** 您输入的手机号码格式错误</p>-->
                     </div>
                     <div class="user-box">
                         <p>短信验证</p>
@@ -119,7 +130,7 @@
             </div>
             <div class="show-win-box" v-show="win_show === 2">
                 <div class="show-win-out" @click="win_show=0">
-                    <img src="@/assets/out.svg" />
+                    <img src="@/assets/out.svg"/>
                 </div>
                 <div class="" v-show="!next">
                     <h3>帐号安全验证</h3>
@@ -151,7 +162,7 @@
             </div>
             <div class="show-win-box" v-show="win_show===3">
                 <div class="show-win-out" @click="win_show=0">
-                    <img src="@/assets/out.svg" />
+                    <img src="@/assets/out.svg"/>
                 </div>
                 <div v-show="user.email === ''">
                     <div class="" v-show="!next">
@@ -232,6 +243,7 @@
 </template>
 
 <script>
+import MazPhoneNumberInput from 'maz-ui/components/MazPhoneNumberInput'
 import header from "../components/header.vue"
 import bottom from "../components/bottom.vue"
 import {verification_code} from "@/api/sign.js"
@@ -256,6 +268,7 @@ export default {
     components: {
         headers: header,
         bottoms: bottom,
+        MazPhoneNumberInput: MazPhoneNumberInput,
     },
     data() {
         return {
@@ -411,7 +424,7 @@ export default {
                         })
                         this.user_infos()
                         this.win_show = 0
-                    } else if(response.code === 400) {
+                    } else if (response.code === 400) {
                         ElMessage({
                             message: h('p', null, [
                                 h('a', {style: 'color: teal'}, '请输入正确的验证码！'),
