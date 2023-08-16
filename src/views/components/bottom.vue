@@ -3,8 +3,6 @@
         <div class="bottom-info">
             <div class="bottom-logo">
                 <p>H N C E X</p>
-                <img src="@/assets/logo-b.jpg"/>
-                <p>海 碳 中 心</p>
             </div>
             <div class="lx-box">
                 <div class="lx">

@@ -49,7 +49,7 @@
                             <MazPhoneNumberInput
                                 :class="user_show.phone?'':'err'"
                                 v-model="user.username"
-                                :preferred-countries="['FR', 'BE', 'DE', 'US', 'GB']"
+                                :preferred-countries="['CN', 'FR', 'BE', 'DE', 'US', 'GB']"
                                 :noExample=true
                                 :translations= "{
                                     countrySelector: {

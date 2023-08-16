@@ -1,55 +1,211 @@
 <template>
     <headers></headers>
     <div class="property">
-        <div id="tts" style="width: 100%;height: 40vh;"></div>
+<!--        <div id="tts" style="width: 100%;height: 40vh;"></div>-->
+        <div class="property-ac">
+            <div class="property-ac-box" :class="pa_show==1?'':'property-ac-box-active'" @click="pa_showc(1)">注销</div>
+            <div class="property-ac-box" :class="pa_show==2?'':'property-ac-box-active'" @click="pa_showc(2)">活动</div>
+        </div>
         <div class="pro-box">
-            <h2>个人碳资产 Personal carbon assets</h2>
-            <el-table :data="tableData" @expand-change="on" :border="parentBorder" style="width: 100%">
-                <el-table-column type="expand">
-                    <template #default="props">
-                        <div class="exp-box">
-                            <div class="exp-info">
-                                <h2 style="padding: 0">资产信息</h2>
-                                <p>CID: <span>{{ props.row.cid }}</span></p>
-                                <p>资产代码: <span>{{ props.row.asset_code }}</span></p>
-                                <p>项目签发: <span>{{ props.row.pi }}</span></p>
-                                <p>序列号: <span>{{ props.row.s_num }}</span></p>
-                                <p>credits: <span>{{ props.row.credits }}</span></p>
+            <div class="pro-box1" v-if="pa_show==2">
+                <h2>个人碳资产注销记录 Personal Carbon Assets Retire History</h2>
+                <el-table :data="actData" @expand-change="on" :border="parentBorder" style="width: 100%">
+                    <el-table-column type="expand">
+                        <template #default="props">
+                            <div class="exp-box">
+                                <!-- <div class="exp-info">
+                                    <h2 style="padding: 0">资产信息</h2>
+                                    <p>日期: <span>{{ props.row.day }}</span></p>
+                                    <p>资产代码: <span>{{ props.row.gs }}</span></p>
+                                    <p>国家: <span>{{ props.row.country }}</span></p>
+                                    <p>项目: <span>{{ props.row.project }}</span></p>
+                                    <p>项目类型: <span>{{ props.row.project_type }}</span></p>
+                                    <p>序列号: <span>{{ props.row.serial_number }}</span></p>
+                                    <p>credits: <span>{{ props.row.number }}</span></p>
+                                    <p>retires: <span>{{ props.row.retire_number }}</span></p>
+                                </div>
+                                <div :id="'chartLineBox' + props.row.cid" style="width: 95%;height: 50vh;"></div> -->
                             </div>
-                            <div :id="'chartLineBox' + props.row.cid" style="width: 95%;height: 50vh;"></div>
-                        </div>
-                    </template>
-                </el-table-column>
-                <el-table-column prop="cid" width="120" label="CID"/>
-                <el-table-column
-                        prop="hold"
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="create_time" width="200" label="注销时间"/>
+                    <el-table-column prop="r_id"  label="注销的单号"/>
+                    <el-table-column prop="ass_id" label="注销项目的标识"/>
+                    <el-table-column prop="number" width="120" label="retires"/>
+                    <el-table-column prop="certificate_link" width="150" label="注销证书链接"/>
+                </el-table>
+            </div>
+            <div class="pro-box2" v-if="pa_show==1">
+                <h2>个人碳资产 Personal Carbon Assets</h2>
+                <el-table :data="tableData" @expand-change="on" :border="parentBorder" style="width: 100%">
+                    <el-table-column type="expand">
+                        <template #default="props">
+                            <div class="exp-box">
+                                <div class="exp-info">
+                                    <h2 style="padding: 0">资产信息</h2>
+                                    <p>日期: <span>{{ props.row.day }}</span></p>
+                                    <p>资产代码: <span>{{ props.row.gs }}</span></p>
+                                    <p>国家: <span>{{ props.row.country }}</span></p>
+                                    <p>项目: <span>{{ props.row.project }}</span></p>
+                                    <p>项目类型: <span>{{ props.row.project_type }}</span></p>
+                                    <p>序列号: <span>{{ props.row.serial_number }}</span></p>
+                                    <p>credits: <span>{{ props.row.number }}</span></p>
+                                    <p>retires: <span>{{ props.row.retire_number }}</span></p>
+                                </div>
+                                <div :id="'chartLineBox' + props.row.cid" style="width: 95%;height: 50vh;"></div>
+                            </div>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="hid" width="220" label="资产代码"/>
+                    <el-table-column
+                        prop="listing"
                         label="挂牌"
                         width="100"
                         :filters="[
-                            { text: '是', value: 'YES' },
-                            { text: '否', value: 'NO' },
-                          ]"
+                            { text: 'yes', value: true },
+                            { text: 'no', value: false },
+                        ]"
                         :filter-method="filterTag"
                         filter-placement="bottom-end">
-                    <template #default="scope">
-                        <el-tag :type="scope.row.tag === 'NO' ? '' : 'success'" disable-transitions>{{ scope.row.tag }}
-                        </el-tag>
-                    </template>
-                </el-table-column>
-                <el-table-column prop="asset_code" width="150" label="资产代码"/>
-                <el-table-column prop="pi" width="300" label="项目签发"/>
-                <el-table-column prop="s_num" width="350" label="序列号"/>
-                <el-table-column prop=i_date width="150" label="发行日期"/>
-                <el-table-column prop=credits width="100" label="credits"/>
-                <el-table-column fixed="right" width="80" label="操作">
-                    <template #default>
-                        <div class="d-list">
-                            <div link type="primary">转入</div>
-                            <div link type="primary">转出</div>
+                        <template #default="scope">
+                            <el-tag
+                                :type="scope.row.listing == false ? '' : 'success'"
+                                disable-transitions
+                            >{{ scope.row.listing == false ? 'no' : 'yes' }}</el-tag>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="day" width="100" label="日期"/>
+                    <el-table-column prop="gs" width="120" label="GS"/>
+                    <el-table-column prop="project" width="200" label="项目"/>
+                    <el-table-column prop="project_type" width="150" label="项目类型"/>
+                    <el-table-column prop="country" width="100" label="国家"/>
+                    <el-table-column prop=number width="120" label="credits"/>
+                    <el-table-column prop=retire_number width="120" label="retires"/>
+                    <el-table-column prop=serial_number width="250" label="序列号"/>
+                    <el-table-column fixed="right" width="80" label="操作">
+                        <template  #default="props">
+                            <div class="d-list" v-if="!props.row.listing">
+                                <div link type="primary" @click="chushou(props.row)">挂牌</div>
+                                <div link type="primary" @click="retire(props.row)">注销</div>
+                            </div>
+                            <div class="d-list" v-if="props.row.listing">
+                                <div link type="primary" @click="remove_chushou(props.row)">取消挂牌</div>
+                            </div>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </div>
+            <div class="trade-body" v-if="this.show2">
+                <div class="trade-box">
+                    <div class="t-tx">
+                        <h2>注销碳资产</h2>
+                    </div>
+                    <div class="rows">
+                        <div>GS ID</div>
+                        <div>日期</div>
+                        <div>Credits</div>
+                        <div>Product</div>
+                        <div>Serial</div>
+                    </div>
+                    <div class="rows data">
+                        <div>{{ sdata.gs }}</div>
+                        <div>{{ sdata.day }}</div>
+                        <div>{{ sdata.number }}</div>
+                        <div>{{ sdata.product }}</div>
+                        <div>{{ sdata.serial }}</div>
+                    </div>
+                    <div class="trade-dr">
+                        <p class="trade-c">Project Name</p>
+                        <p>{{sdata.project}}</p>
+                    </div>
+                    <div class="trade-dr">
+                        <p class="trade-c">Account ID</p>
+                        <p>{{ sdata.user_id }}</p>
+                    </div>
+                    <div class="trade-dr">
+                        <p class="trade-c">资产号</p>
+                        <div style="margin-top: 10px">
+                            <el-input :value="sdata.hid" disabled placeholder="资产号" />
                         </div>
-                    </template>
-                </el-table-column>
-            </el-table>
+                    </div>
+                    <div class="trade-dr">
+                        <p class="trade-c">数量/吨</p>
+                        <div style="margin-top: 10px">
+                            <el-input-number v-model="retire_amount" :min="1" :max="sdata.number" />
+                        </div>
+                    </div>
+                    <div class="bs">
+                        <div class="" @click="this.show2 = false">退出</div>
+                        <div class="do" @click="retire_any()">注销</div>
+                    </div>
+                </div>
+            </div>
+            <div class="trade-body" v-if="this.show">
+                <div class="trade-box">
+                    <div class="t-tx">
+                        <h2>购买碳资产</h2>
+                    </div>
+                    <div class="rows">
+                        <div>GS ID</div>
+                        <div>日期</div>
+                        <div>Credits</div>
+                        <div>Product</div>
+                        <div>Serial</div>
+                    </div>
+                    <div class="rows data">
+                        <div>{{ sdata.gs }}</div>
+                        <div>{{ sdata.day }}</div>
+                        <div>{{ sdata.number }}</div>
+                        <div>{{ sdata.product }}</div>
+                        <div>{{ sdata.serial }}</div>
+                    </div>
+                    <div class="trade-dr">
+                        <p class="trade-c">Project Name</p>
+                        <p>{{sdata.project}}</p>
+                    </div>
+                    <div class="trade-dr">
+                        <p class="trade-c">Account ID</p>
+                        <p>{{ sdata.user_id }}</p>
+                    </div>
+                    <div class="trade-dr">
+                        <p class="trade-c">资产号</p>
+                        <div style="margin-top: 10px">
+                            <el-input :value="sdata.hid" disabled placeholder="资产号" />
+                        </div>
+                    </div>
+                    <div class="bots">
+                        <div class="trade-dr">
+                            <p class="trade-c">收款钱包</p>
+                            <div style="margin-left: -6px">
+                                <el-select v-model="wallet" class="m-2" placeholder="钱包ID">
+                                    <el-option
+                                        v-for="item in wallet_id_list"
+                                        :key="item.name"
+                                        :label="item.name+':'+item.wallet_id"
+                                        :value="item.wallet_id"
+                                    />
+                                </el-select>
+                            </div>
+                        </div>
+                        <div class="trade-dr">
+                            <p class="trade-c">数量</p>
+                            <div style="margin-top: 10px">
+                                <el-input-number v-model="num" :min="1" :max="sdata.number" />
+                            </div>
+                        </div>
+                        <div class="trade-dr">
+                            <p class="trade-c">数量/金额</p>
+                            <div style="margin-top: 10px">
+                                <el-input-number v-model="amount" :precision="2" :step="0.1" :max="1000000000" />
+                            </div>
+                        </div>
+                        <div class="bs">
+                            <div class="" @click="this.show = false">退出</div>
+                            <div class="do" @click="personal_sell_set()">挂牌</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <bottoms></bottoms>
@@ -58,6 +214,10 @@
 <script>
 import header from "../components/header.vue"
 import bottom from "../components/bottom.vue"
+import {asset_personal_list, personal_get_retire, personal_retire, personal_sell, wallet_list} from "@/api/hub";
+import {ElMessage} from "element-plus";
+import {h} from "vue";
+// import { pa } from "element-plus/es/locale";
 
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
@@ -67,15 +227,106 @@ export default {
         bottoms: bottom,
     },
     mounted() {
-        let user = localStorage.getItem("user")
-        let data = JSON.parse(user);
-        if (data.admin_info.cell_phone_number !== "+8613318499181" && data.admin_info.cell_phone_number === undefined) {
-            this.$router.push({path: '/index'})
-        }
-        this.year100()
-        this.dos_title()
+        // let user = localStorage.getItem("user")
+        // let data = JSON.parse(user);
+        // if (data.admin_info.cell_phone_number !== "+8613318499181" && data.admin_info.cell_phone_number === undefined) {
+        //     this.$router.push({path: '/index'})
+        // }
+        // this.year100()
+        // this.dos_title()
+        this.asset_personal_lists()
+        this.wallet_lists()
     },
     methods: {
+        personal_sell_set() {
+            let data = {
+                ass_id: this.sdata.ass_id,
+                amount: this.amount,
+                number: this.num,
+                status: 3001,
+                keep_time: 1000,
+                collection_wallet_id: this.wallet
+            }
+            const formData = Object.assign({}, data)
+            personal_sell(formData).then(response => {
+                if (response.code == 200) {
+                    ElMessage({
+                        message: h('p', null, [
+                            h('a', {style: 'color: teal'}, '资产挂牌成功'),
+                        ]),
+                    })
+                    this.asset_personal_lists()
+                    this.show = false
+                }
+            })
+        },
+        wallet_lists() {
+            wallet_list().then(response => {
+                console.log(response.wallet_id_list)
+                this.wallet_id_list =  response.wallet_id_list
+            })
+        },
+        chushou(data) {
+            this.sdata = data
+            this.show = true
+        },
+        retire(data) {
+            this.sdata = data
+            this.show2 = true
+        },
+        remove_chushou(val) {
+            let data = {
+                ass_id: val.ass_id,
+                collection_wallet_id:"----",
+                status: 3002,
+            }
+            const formData = Object.assign({}, data)
+            personal_sell(formData).then(response => {
+                if (response.code == 200) {
+                    ElMessage({
+                        message: h('p', null, [
+                            h('a', {style: 'color: teal'}, '取消挂牌成功'),
+                        ]),
+                    })
+                    this.asset_personal_lists()
+                }
+            })
+        },
+        retire_any_get() {
+            personal_get_retire().then(response => {
+                // console.log(response)
+                this.actData = response.retire_list
+            })
+        },
+        retire_any() {
+            let data = {
+                ass_id: this.sdata.ass_id,
+                number: this.retire_amount,
+            }
+            const formData = Object.assign({}, data)
+            personal_retire(formData).then(response => {
+                if (response.code == 200) {
+                    ElMessage({
+                        message: h('p', null, [
+                            h('a', {style: 'color: teal'}, '注销成功'),
+                        ]),
+                    })
+                }
+            })
+        },
+        asset_personal_lists() {
+            asset_personal_list().then(response => {
+                this.tableData = response.personal_asset_list
+            })
+        },
+        pa_showc(num) {
+            this.pa_show = num
+            if(num == 1) {
+                this.asset_personal_lists()
+            } else if(num == 2) {
+                this.retire_any_get()
+            }
+        },
         year100() {
             var dd = new Date()
             for (var i = 1; i <= 100; i++) {
@@ -271,71 +522,18 @@ export default {
     data() {
         return {
             year_data: [],
-            tableData: [
-                {
-                    cid: 'C23451',
-                    asset_code: '81611-821440',
-                    pi: 'Houji Solar Cooker Project (GS7604)',
-                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-81611-821440',
-                    i_date: 'Jun 07, 2021',
-                    credits: "739,829",
-                    tag: 'YES'
-                },
-                {
-                    cid: 'C77341',
-                    asset_code: '87620-831440',
-                    pi: 'Houji Solar Cooker Project (GS7604)',
-                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-87620-831440',
-                    i_date: 'Jul 21, 2021',
-                    credits: "743,820",
-                    tag: 'NO'
-                },
-                {
-                    cid: 'C79032',
-                    asset_code: '89977-834440',
-                    pi: 'Houji Solar Cooker Project (GS7604)',
-                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-89977-834440',
-                    i_date: 'Feb 02, 2022',
-                    credits: "744,463",
-                    tag: 'NO'
-                },
-                {
-                    cid: 'C80978',
-                    asset_code: '91821-847230',
-                    pi: 'Houji Solar Cooker Project (GS7604)',
-                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-85977-62934',
-                    i_date: 'May 11, 2022',
-                    credits: "755,409",
-                    tag: 'YES'
-                },
-                {
-                    cid: 'C87178',
-                    asset_code: '93966-855132',
-                    pi: 'Houji Solar Cooker Project (GS7604)',
-                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-93966-855132',
-                    i_date: 'May 23, 2022',
-                    credits: "761,166",
-                    tag: 'YES'
-                },
-                {
-                    cid: 'C91323',
-                    asset_code: '94123-875318',
-                    pi: 'Houji Solar Cooker Project (GS7604)',
-                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-94123-875318',
-                    i_date: 'Feb 19, 2023',
-                    credits: "781,195",
-                    tag: 'YES'
-                },
-                {
-                    cid: 'C94278',
-                    asset_code: '95651-905318',
-                    pi: 'Houji Solar Cooker Project (GS7604)',
-                    s_num: 'GS1-1-CN-GS7604-3-2020-21289-95651-905318',
-                    i_date: 'Mar 11, 2023',
-                    credits: "809,667",
-                    tag: 'YES'
-                }
-            ]
+            tableData: [],
+            num: "",
+            pa_show: 1,
+            amount: "",
+            retire_amount: "",
+            value:"",
+            show: false,
+            show2: false,
+            wallet: "",
+            sdata: [],
+            actData: [],
+            wallet_id_list:[],
         }
     }
 }
@@ -358,11 +556,14 @@ export default {
     justify-content: center;
 }
 
+
+
 .exp-box {
     padding: 40px;
 }
 
-.exp-box div:nth-of-type(1) {
+.d-list div:nth-of-type(2) {
+    color: red;;
 }
 
 .d-list div {
@@ -386,4 +587,88 @@ export default {
     color: #2a4742;
     padding: 5px 30px;
 }
+
+.trade-body {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    background: rgba(68, 68, 68, 0.49);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.trade-box {
+    padding: 20px 60px;
+    width: 700px;
+    background: white;
+}
+
+.rows div {
+    width: 180px;
+}
+
+.rows {
+    display: flex;
+    color: #737373;
+    padding: 3px 0;
+    justify-content: center;
+}
+
+.data {
+    color: #232323;
+}
+
+.trade-c {
+    color: #737373;
+}
+
+.trade-dr {
+    margin: 20px 0;
+}
+
+.trade-dr p {
+    padding: 0;
+    margin: 3px 0;
+}
+
+.bs {
+    display: flex;
+    justify-content: right;
+}
+
+.bs div {
+    padding: 10px 50px;
+    cursor: pointer;
+}
+
+.property-ac {
+    display: flex;
+}
+
+.property-ac-box-active {
+    background: #ffffff85 !important;
+}
+
+.property-ac-box {
+    background: white;
+    padding: 12px 24px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 10px 10px 0 0;
+}
+
+.do {
+    background: #345952;
+    color: white;
+}
+
+@media screen and (max-width: 800px)  {
+    .property {
+        padding: 100px 0;
+    }
+  }
 </style>

@@ -97,9 +97,9 @@
         <div class="select-common">
             <div class="common-help">
                 <img src="@/assets/undraw_Personal_info_re_ur1n.png"/>
-                <h2>气候危机需要采取大规模行动，您可以从今天开始。。</h2>
+                <h2>气候危机需要采取大规模行动，您可以从抵消您的碳足迹来改变现状</h2>
                 <p>单靠碳抵消并不能结束气候危机，但计算和抵消您的碳足迹是改变现状的好方法。</p>
-                <div class="common-button">让我们开始吧</div>
+                <div class="common-button" @click="let_me_do">让我们开始吧</div>
             </div>
         </div>
     </div>
@@ -117,6 +117,11 @@ export default {
                 c: "超出商业行为的额外性",
                 d: "无重复计算"
             }
+        }
+    },
+    methods: {
+        let_me_do() {
+            this.$router.push({path: '/offset'})
         }
     }
 }

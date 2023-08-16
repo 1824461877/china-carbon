@@ -5,27 +5,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44c20de5-1921-46b3-9b36-3cacd65984b1" name="Changes" comment="update mdoe">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/gsf_img/rwanda_serious/tit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/hub.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/aws.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/aws.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/aws1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/aws2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/gsf1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/gsf2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/r1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/r2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/re.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/undraw_Blooming_re_2kc4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/city.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/gsf.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/gsf_project.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/exchange/exchange.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/more/more.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/project/more.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/wallet/wallet.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/carbon_front_dist/css/app.7efbc6ec.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/carbon_front_dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/carbon_front_dist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/carbon_front_dist/js/app.04023220.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/carbon_front_dist/js/chunk-vendors.f5a06668.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/sign.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/sign.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/logo-black.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/logo-black.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/request.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/approach/approach.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/approach/approach.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/components/bottom.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/bottom.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/components/header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/index/components/action.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/index/components/action.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/index/components/common.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/index/components/common.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/index/components/stricture.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/index/components/stricture.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/offset/offset.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/offset/offset.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/project/components/select.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/project/components/select.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/project/project.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/project/project.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/property/property.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/property/property.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/sign/password_new.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/sign/password_new.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/sign/signin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/sign/signin.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/sign/signup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/sign/signup.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/user/user.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/user/user.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,11 +55,17 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Vue Single File Component" />
+        <option value="Vue Options API Component" />
+        <option value="JavaScript File" />
+        <option value="Vue Composition API Component" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/views/project/more.vue" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -55,7 +80,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/project/china-carbon/src/assets&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/project/china-carbon/src/utils&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -64,15 +89,27 @@
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\project\\china-carbon\\node_modules\\prettier&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;vue.recent.templates&quot;: [
+      &quot;Vue Options API Component&quot;,
+      &quot;Vue Composition API Component&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\project\china-carbon\src\utils" />
       <recent name="C:\project\china-carbon\src\assets" />
+      <recent name="C:\project\china-carbon\public\static\gsf_img\rwanda_serious" />
       <recent name="C:\project\china-carbon\public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\project\china-carbon\src\assets" />
+      <recent name="C:\project\china-carbon\public" />
+      <recent name="C:\project\china-carbon\src\static" />
+      <recent name="C:\project\china-carbon\src\assets\gsf_img\Rwanda_serious" />
+      <recent name="C:\project\china-carbon\src\views\project" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -96,7 +133,25 @@
       <workItem from="1683203344228" duration="2986000" />
       <workItem from="1683218053023" duration="124000" />
       <workItem from="1683249095150" duration="5819000" />
-      <workItem from="1683650454483" duration="5683000" />
+      <workItem from="1683650454483" duration="7004000" />
+      <workItem from="1683726144222" duration="7405000" />
+      <workItem from="1683813893074" duration="12677000" />
+      <workItem from="1683996250409" duration="19663000" />
+      <workItem from="1684281757355" duration="5731000" />
+      <workItem from="1684369739809" duration="1705000" />
+      <workItem from="1684371550232" duration="283000" />
+      <workItem from="1684375812167" duration="677000" />
+      <workItem from="1684715943188" duration="2491000" />
+      <workItem from="1686010344519" duration="866000" />
+      <workItem from="1686035062660" duration="749000" />
+      <workItem from="1686160240533" duration="22143000" />
+      <workItem from="1686382319344" duration="17081000" />
+      <workItem from="1686447134252" duration="9140000" />
+      <workItem from="1686710993804" duration="7880000" />
+      <workItem from="1687750997069" duration="4438000" />
+      <workItem from="1687828513536" duration="14622000" />
+      <workItem from="1688518242951" duration="7334000" />
+      <workItem from="1690530688876" duration="885000" />
     </task>
     <task id="LOCAL-00001" summary="update mdoe">
       <created>1681866029796</created>

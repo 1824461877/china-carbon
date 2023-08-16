@@ -11,6 +11,10 @@
                     <p>抵消航程碳足迹</p>
                     <p>Offset Flight</p>
                 </li>
+                <li @click="exchan()" :class="s_index===5?'i_show_tt':''">
+                    <p>交易所</p>
+                    <p>Exchange</p>
+                </li>
                 <li @click="approach()" :class="s_index===3?'i_show_tt':''">
                     <p>我们的方法</p>
                     <p>Our approach</p>
@@ -19,7 +23,7 @@
                     <p>我们的项目</p>
                     <p>Our project</p>
                 </li>
-                <li>
+                <li @click="learn_more()" :class="s_index===6?'i_show_tt':''">
                     <p>了解更多</p>
                     <p>Learn more</p>
                 </li>
@@ -37,6 +41,7 @@
             <ul>
                 <li @click="user_path()"><img src="@/assets/set.png"/> 设置</li>
                 <li @click="property_path()"><img src="@/assets/set.png"/> 资产</li>
+                <li @click="wallet()"><img src="@/assets/set.png"/> 钱包</li>
                 <li @click="out()"><img src="@/assets/out.png"/> 登出</li>
             </ul>
         </div>
@@ -62,11 +67,15 @@
                     <p>我们的项目</p>
                     <p>Our project</p>
                 </li>
-                <li>
+                <li @click="exchan()" :class="s_index===5?'i_show':''">
+                    <p>交易所</p>
+                    <p>Exchange</p>
+                </li>
+                <li @click="learn_more()" :class="s_index===6?'i_show':''">
                     <p>了解更多</p>
                     <p>Learn more</p>
                 </li>
-                <li class="login" @click="sign_in()" :class="s_index===5?'i_show':''">
+                <li class="login" @click="sign_in()" :class="s_index===7?'i_show':''">
                     <p>登录</p>
                     <p>Sign in</p>
                 </li>
@@ -123,7 +132,15 @@ export default {
         }
     },
     created() {
-        var path = this.$route.path
+        var pathSet = this.$route.path
+        var path = pathSet
+        var index = pathSet.indexOf("/",2)
+        if (index === -1) {
+            path = pathSet
+        } else {
+            path = pathSet.substring(0,index)
+        }
+
         if (path === '/index') {
             this.s_index = 1
         } else if (path === '/offset') {
@@ -132,17 +149,16 @@ export default {
             this.s_index = 3
         } else if (path === '/project') {
             this.s_index = 4
-        } else if (path === '/sign_in') {
+        } else if (path === '/exchange') {
             this.s_index = 5
+        } else if (path === '/learn_more') {
+            this.s_index = 6
+        } else if (path === '/sign_in') {
+            this.s_index = 7
         }
         this.user_infos()
     },
     methods: {
-        property_path() {
-            if (this.user.admin_info.cell_phone_number === "+8613318499181") {
-                this.$router.push({path: '/property'})
-            }
-        },
         admin_set_info() {
             const formData = Object.assign({}, this.user_info)
             admin_set(formData).then(response => {
@@ -194,6 +210,15 @@ export default {
         user_path() {
             this.$router.push({path: '/user'})
         },
+        exchan() {
+            this.$router.push({path: '/exchange'})
+        },
+        property_path() {
+            this.$router.push({path:"/property"})
+        },
+        wallet() {
+            this.$router.push({path:"/wallet"})
+        },
         offset() {
             this.$router.push({path: '/offset'})
         },
@@ -202,6 +227,9 @@ export default {
         },
         project() {
             this.$router.push({path: '/project'})
+        },
+        learn_more() {
+            this.$router.push({path: '/learn_more'})
         },
         sign_in() {
             this.$router.push({path: '/sign_in'})
@@ -220,7 +248,7 @@ export default {
     width: 94%;
     justify-content: space-between;
     align-items: center;
-    background: #ffffffeb;
+    background: rgba(255, 255, 255, 0.93);
 }
 
 .user-box {
@@ -329,7 +357,7 @@ export default {
     top: 10px;
     background: white;
     box-shadow: 1px 1px 10px 1px #e8e8e8;
-    height: 195px;
+    height: 230px;
     border-radius: 15px;
     z-index: 99;
     width: 80px;
@@ -371,7 +399,7 @@ export default {
     margin: 30px auto 30px auto;
     width: 50%;
     transition: border-bottom 0.2s, margin-top 0.2s;
-    border-bottom: 2px solid #ffffffeb;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.93);
     padding: 10px 10px;
 }
 

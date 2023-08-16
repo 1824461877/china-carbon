@@ -1,7 +1,7 @@
 <template>
     <headers></headers>
     <div class="project">
-        <h1 class="project-tit">拯救我们的地球，改变人生的项目。</h1>
+        <h1 class="project-tit">拯救我们的地球，改变人生的项目</h1>
         <img src="@/assets/undraw_counting_stars_re_smvv.svg"/>
         <ul class="project-tit-box">
             <li>我们的项目</li>
@@ -12,6 +12,33 @@
             <h2>可持续发展目标呼吁所有国家行动起来，在促进经济繁荣的同时保护地球。</h2>
             <p class="p-b-des">
                 可持续发展目标呼吁所有国家（不论该国是贫穷、富裕还是中等收入）行动起来，在促进经济繁荣的同时保护地球。目标指出，消除贫困必须与一系列战略齐头并进，包括促进经济增长，解决教育、卫生、社会保护和就业机会的社会需求，遏制气候变化和保护环境。</p>
+            <div class="pbi-box">
+                <div class="pib-right">
+                    <h1>思瑞恩科技的太阳能热能</h1>
+                    <p>
+                        该项目涉及向河南省镇平县的农村家庭分发50000个太阳能炊具。镇平的大多数农村家庭使用燃煤炉灶烧水和做饭。
+                        使用堆芯炉灶不仅会导致大量温室气体排放，还会造成空气污染，这对居民的健康构成了高风险。此外，使用核心炉灶需要家庭花钱购买煤炭。该项目活动将使农村家庭能够有效地用太阳能替代日常烹饪和沸水中使用的化石燃料（煤炭），避免化石燃料消耗产生的二氧化碳排放。
+                    </p>
+                    <div class="pib-right-option">
+                        <div class="pib-right-o-item">
+                            <a>√</a>良好健康与福祉
+                        </div>
+                        <div class="pib-right-o-item">
+                            <a>√</a>性别平等工作现状
+                        </div>
+                        <div class="pib-right-o-item">
+                            <a>√</a>体面的就业机会
+                        </div>
+                        <div class="pib-right-o-item">
+                            <a>√</a>应对气候变化
+                        </div>
+                    </div>
+                    <div class="pib-right-more" @click="more('1001')">
+                        了解更多
+                    </div>
+                </div>
+                <img src="@/assets/re.png"/>
+            </div>
             <div class="pbi-box">
                 <img src="@/assets/project-1.png"/>
                 <div class="pib-right">
@@ -31,10 +58,10 @@
                             <a>√</a>体面的就业机会
                         </div>
                         <div class="pib-right-o-item">
-                            <a>√</a>采取紧急行动应对气候变化
+                            <a>√</a>应对气候变化
                         </div>
                     </div>
-                    <div class="pib-right-more">
+                    <div class="pib-right-more" @click="more('1002')">
                         了解更多
                     </div>
                 </div>
@@ -57,10 +84,10 @@
                             <a>√</a>体面的就业机会
                         </div>
                         <div class="pib-right-o-item">
-                            <a>√</a>采取紧急行动应对气候变化
+                            <a>√</a>应对气候变化
                         </div>
                     </div>
-                    <div class="pib-right-more">
+                    <div class="pib-right-more" @click="more('1003')">
                         了解更多
                     </div>
                 </div>
@@ -82,10 +109,10 @@
                             <a>√</a>体面的就业机会
                         </div>
                         <div class="pib-right-o-item">
-                            <a>√</a>采取紧急行动应对气候变化
+                            <a>√</a>应对气候变化
                         </div>
                     </div>
-                    <div class="pib-right-more">
+                    <div class="pib-right-more" @click="more('1004')">
                         了解更多
                     </div>
                 </div>
@@ -107,10 +134,10 @@
                             <a>√</a>体面的就业机会
                         </div>
                         <div class="pib-right-o-item">
-                            <a>√</a>采取紧急行动应对气候变化
+                            <a>√</a>应对气候变化
                         </div>
                     </div>
-                    <div class="pib-right-more">
+                    <div class="pib-right-more" @click="more('1005')">
                         了解更多
                     </div>
                 </div>
@@ -136,10 +163,10 @@
                             <a>√</a>清洁饮用水和卫生设施
                         </div>
                         <div class="pib-right-o-item">
-                            <a>√</a>采取紧急行动应对气候变化
+                            <a>√</a>应对气候变化
                         </div>
                     </div>
-                    <div class="pib-right-more">
+                    <div class="pib-right-more" @click="more('1006')">
                         了解更多
                     </div>
                 </div>
@@ -160,10 +187,10 @@
                             <a>√</a>体面的就业机会
                         </div>
                         <div class="pib-right-o-item">
-                            <a>√</a>采取紧急行动应对气候变化
+                            <a>√</a>应对气候变化
                         </div>
                     </div>
-                    <div class="pib-right-more">
+                    <div class="pib-right-more" @click="more('1007')">
                         了解更多
                     </div>
                 </div>
@@ -196,6 +223,11 @@ export default {
         return {
             show: false
         }
+    },
+    methods: {
+        more(name) {
+            this.$router.push({path: '/project/more/' + name,params:{key:name}})
+        }
     }
 }
 </script>
@@ -219,7 +251,7 @@ export default {
 }
 
 .project p {
-    font-size: 20px;
+    font-size: 18px;
     color: #4e4e4e;
     line-height: 35px;
 }
@@ -271,7 +303,7 @@ export default {
 
 .pbi-box img {
     max-width: 400px;
-    width: 20vw;
+    width: 28vw;
     object-fit: cover;
 }
 
@@ -322,7 +354,7 @@ export default {
     margin: 0 auto;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1100px) {
     .project-box-item {
         width: 100%;
     }
@@ -354,7 +386,7 @@ export default {
         width: 90%;
     }
 
-    .pbi-box:nth-of-type(2n) {
+    .pbi-box:nth-of-type(2n+1) {
         flex-direction: column-reverse;
     }
 }

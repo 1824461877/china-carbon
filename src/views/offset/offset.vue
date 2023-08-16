@@ -7,47 +7,6 @@
             。此外，您亦可直接选择一定数量的自愿碳指标，用于抵消对应规模的二氧化碳排放量。为此，只需选择下面的“个性化计划”。
         </p>
         <img src="@/assets/gg.jpg"/>
-        <div class="contribute">
-            <img src="@/assets/undraw_showing_support_re_5f2v.svg"/>
-            <h2>个性化计划</h2>
-            <p>
-                个性化碳抵消规模为1~999吨二氧化碳，请选择您打算支付用于抵消的二氧化碳吨数。
-            </p>
-            <h3>选择捐助方法</h3>
-            <div class="contribute-box">
-                <div class="contribute-box-left">
-                    捐助选项:
-                </div>
-                <div class="mb-2 flex items-center text-sm">
-                    <el-radio-group v-model="op" class="large">
-                        <div class="contribute-gr-op">
-                            <el-radio label="1" size="large">透过信用卡／微信／支付宝／电子支付方式支付</el-radio>
-                            <el-radio label="2" size="large">从我的碳账户中抵消</el-radio>
-                        </div>
-                    </el-radio-group>
-                </div>
-            </div>
-            <div class="contribute-box">
-                <div class="contribute-box-left">
-                    捐助额:
-                </div>
-                <div >
-                    人民币:
-                    <el-input-number
-                            v-model="num"
-                            :min="1"
-                            :max="10"
-                            controls-position="right"
-                            size="mx-4"
-                            @change="handleChange"
-                    />
-                </div>
-            </div>
-            <div>
-                <el-checkbox v-model="checked1" label="若要继续进行，请勾选复选框来表示你已同意。" size="large"/>
-            </div>
-            <div class="common-button c-bg">点击此处进行抵消，并获得抵消凭证</div>
-        </div>
         <div class="carbon">
             <img :style="!sh?'display: none;':''" src="@/assets/undraw_augmented_reality_re_f0qd.svg"/>
             <div class="fen" :style="sh?'display: none;':''">
@@ -68,24 +27,36 @@
                     <div class="o-f-t-b">到达</div>
                 </div>
                 <el-select v-model="from" class="m-2" filterable placeholder="请选择出发的国家">
-                    <el-option
-                            v-for="item in info"
-                            :key="item.value"
-                            :label="item.name"
-                            :value="item.tel">
-                        <span style="float: left">{{ item.name }}</span>
-                        <span style="float: right; color: #8492a6; font-size: 13px">{{ item.en }}</span>
-                    </el-option>
+                    <el-option-group
+                        v-for="group in info.provinces"
+                        :key="group.provinceName"
+                        :label="group.provinceName"
+                    >
+                        <el-option
+                            v-for="item in group.citys"
+                            :key="item.cityName"
+                            :label="item.cityName"
+                            :value="item.cityName">
+                            <span style="float: left">{{ item.cityName }}</span>
+<!--                            <span style="float: right; color: #8492a6; font-size: 13px">{{ item.en }}</span>-->
+                        </el-option>
+                    </el-option-group>
                 </el-select>
                 <el-select v-model="to" class="m-2" filterable placeholder="请选择到达的国家">
-                    <el-option
-                            v-for="item in info"
-                            :key="item.value"
-                            :label="item.name"
-                            :value="item.tel">
-                        <span style="float: left">{{ item.name }}</span>
-                        <span style="float: right; color: #8492a6; font-size: 13px">{{ item.en }}</span>
-                    </el-option>
+                    <el-option-group
+                        v-for="group in info.provinces"
+                        :key="group.provinceName"
+                        :label="group.provinceName"
+                    >
+                        <el-option
+                            v-for="item in group.citys"
+                            :key="item.cityName"
+                            :label="item.cityName"
+                            :value="item.cityName">
+                            <span style="float: left">{{ item.cityName }}</span>
+                            <!--                            <span style="float: right; color: #8492a6; font-size: 13px">{{ item.en }}</span>-->
+                        </el-option>
+                    </el-option-group>
                 </el-select>
                 <div class="o-f-t">
                     <div class="o-f-t-b">人数</div>
@@ -114,6 +85,46 @@
                 <div class="common-button" @click="count()">点击计算</div>
             </div>
         </div>
+        <div class="contribute">
+            <img src="@/assets/undraw_showing_support_re_5f2v.svg"/>
+            <h2>个性化计划</h2>
+            <p>
+                个性化碳抵消规模为1~999吨二氧化碳，请选择您打算支付用于抵消的二氧化碳吨数。
+            </p>
+            <h3>选择捐助方法</h3>
+            <div class="contribute-box">
+                <div class="contribute-box-left">
+                    捐助选项:
+                </div>
+                <div class="mb-2 flex items-center text-sm">
+                    <el-radio-group v-model="op" class="large">
+                        <div class="contribute-gr-op">
+                            <el-radio label="1" size="large">CBDC 支付</el-radio>
+                            <el-radio label="2" size="large">从我的碳账户中抵消</el-radio>
+                        </div>
+                    </el-radio-group>
+                </div>
+            </div>
+            <div class="contribute-box">
+                <div class="contribute-box-left">
+                    捐助额（吨）:
+                </div>
+                <div>
+                    <el-input-number
+                        v-model="num"
+                        :min="1"
+                        :max="10"
+                        controls-position="right"
+                        size="mx-4"
+                        @change="handleChange"
+                    />
+                </div>
+            </div>
+            <div>
+                <el-checkbox v-model="checked1" label="若要继续进行，请勾选复选框来表示你已同意。" size="large"/>
+            </div>
+            <div class="common-button c-bg" @click="retire()">点击此处进行抵消，并获得抵消凭证</div>
+        </div>
     </div>
     <bottoms></bottoms>
 </template>
@@ -122,6 +133,7 @@
 import header from "../components/header.vue"
 import bottom from "../components/bottom.vue"
 import {AreaCode} from '@/utils/common.js'
+import City from "@/utils/city.json"
 import {ElMessage} from 'element-plus'
 import {h} from 'vue'
 
@@ -133,6 +145,13 @@ export default {
         bottoms: bottom
     },
     methods: {
+        retire() {
+            if (this.op == 1) {
+                this.$router.push({path: '/exchange'})
+            } else if(this.op == 2) {
+                this.$router.push({path:"/property"})
+            }
+        },
         reset() {
             this.from = ""
             this.to = ""
@@ -156,7 +175,7 @@ export default {
     },
     data() {
         return {
-            info: AreaCode,
+            info: City,
             op: "1",
             fen: 0.0,
             sh: true,
@@ -343,6 +362,9 @@ export default {
 .contribute-box-left {
     width: 100px;
     padding-top: 7px;
+    padding-left: 10px;
+    text-align: left;
+    padding-right: 10px;
 }
 
 .contribute-box {
@@ -397,7 +419,7 @@ export default {
 }
 
 .offset .el-input {
-    height: 45px;
+    height: 40px;
 }
 
 .el-radio__label, .el-checkbox__label {

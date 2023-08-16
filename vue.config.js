@@ -1,4 +1,4 @@
-const port = process.env.port || process.env.npm_config_port || 8080
+const port = process.env.port || process.env.npm_config_port || 8081
 
 module.exports = {
   lintOnSave: false,
@@ -13,7 +13,7 @@ module.exports = {
     open: true,
     proxy: {
       "/": {
-        target: "http://127.0.0.1:8880",
+        target: "http://127.0.0.1",
         changeOrigin: true,
         ws: false,
         pathRewrite: {
