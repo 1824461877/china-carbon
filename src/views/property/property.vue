@@ -3,36 +3,42 @@
     <div class="property">
 <!--        <div id="tts" style="width: 100%;height: 40vh;"></div>-->
         <div class="property-ac">
-            <div class="property-ac-box" :class="pa_show==1?'':'property-ac-box-active'" @click="pa_showc(1)">注销</div>
-            <div class="property-ac-box" :class="pa_show==2?'':'property-ac-box-active'" @click="pa_showc(2)">活动</div>
+            <div class="property-ac-box" :class="pa_show==1?'':'property-ac-box-active'" @click="pa_showc(1)">个人资产</div>
+            <div class="property-ac-box" :class="pa_show==2?'':'property-ac-box-active'" @click="pa_showc(2)">注销记录</div>
         </div>
         <div class="pro-box">
             <div class="pro-box1" v-if="pa_show==2">
                 <h2>个人碳资产注销记录 Personal Carbon Assets Retire History</h2>
                 <el-table :data="actData" @expand-change="on" :border="parentBorder" style="width: 100%">
-                    <el-table-column type="expand">
-                        <template #default="props">
+                    <!-- <el-table-column type="expand"> -->
+                        <!-- <template>
                             <div class="exp-box">
-                                <!-- <div class="exp-info">
+                                <div class="exp-info">
                                     <h2 style="padding: 0">资产信息</h2>
-                                    <p>日期: <span>{{ props.row.day }}</span></p>
-                                    <p>资产代码: <span>{{ props.row.gs }}</span></p>
-                                    <p>国家: <span>{{ props.row.country }}</span></p>
-                                    <p>项目: <span>{{ props.row.project }}</span></p>
-                                    <p>项目类型: <span>{{ props.row.project_type }}</span></p>
-                                    <p>序列号: <span>{{ props.row.serial_number }}</span></p>
-                                    <p>credits: <span>{{ props.row.number }}</span></p>
-                                    <p>retires: <span>{{ props.row.retire_number }}</span></p>
+                                    <p>日期: <span>{{ set.day }}</span></p>
+                                    <p>资产代码: <span>{{ set.gs }}</span></p>
+                                    <p>国家: <span>{{ set.country }}</span></p>
+                                    <p>项目: <span>{{ set.project }}</span></p>
+                                    <p>项目类型: <span>{{ set.project_type }}</span></p>
+                                    <p>序列号: <span>{{ set.serial_number }}</span></p>
+                                    <p>credits: <span>{{ set.number }}</span></p>
+                                    <p>retires: <span>{{ set.retire_number }}</span></p>
                                 </div>
-                                <div :id="'chartLineBox' + props.row.cid" style="width: 95%;height: 50vh;"></div> -->
+                                <div :id="'chartLineBox' + props.row.cid" style="width: 95%;height: 50vh;"></div>
                             </div>
-                        </template>
-                    </el-table-column>
-                    <el-table-column prop="create_time" width="200" label="注销时间"/>
+                        </template> -->
+                    <!-- </el-table-column> -->
+                    <el-table-column prop="create_time" width="250" label="注销时间"/>
                     <el-table-column prop="r_id"  label="注销的单号"/>
                     <el-table-column prop="ass_id" label="注销项目的标识"/>
                     <el-table-column prop="number" width="120" label="retires"/>
-                    <el-table-column prop="certificate_link" width="150" label="注销证书链接"/>
+                    <el-table-column width="100" label="证书">
+                        <template  #default="props">
+                            <div class="d-list d-list-x" v-if="!props.row.listing">
+                                <div link type="primary" @click="chushou(props.row)">查看证书</div>
+                            </div>
+                        </template>
+                    </el-table-column>
                 </el-table>
             </div>
             <div class="pro-box2" v-if="pa_show==1">
@@ -311,6 +317,14 @@ export default {
                             h('a', {style: 'color: teal'}, '注销成功'),
                         ]),
                     })
+                    this.show2 = false
+                    this.asset_personal_lists()
+                } else {
+                    ElMessage({
+                        message: h('p', null, [
+                            h('a', {style: 'color: teal'}, '注销失败！！'),
+                        ]),
+                    })
                 }
             })
         },
@@ -556,6 +570,10 @@ export default {
     justify-content: center;
 }
 
+
+.d-list-x > div {
+    text-align: left !important;
+}
 
 
 .exp-box {
