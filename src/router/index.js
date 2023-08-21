@@ -62,8 +62,8 @@ const routes = [{
 
 
 const router = createRouter({
-    history: createWebHashHistory(),  // hash路由模式
-    // history: createWebHistory(),  // history路由模式
+    // history: createWebHashHistory(),  // hash路由模式
+    history: createWebHistory(),  // history路由模式
     routes
 });
 

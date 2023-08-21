@@ -35,7 +35,7 @@
                     <el-table-column width="100" label="证书">
                         <template  #default="props">
                             <div class="d-list d-list-x" v-if="!props.row.listing">
-                                <div link type="primary" @click="chushou(props.row)">查看证书</div>
+                                <div link type="primary" @click="jump(props.row.certificate_link)">查看证书</div>
                             </div>
                         </template>
                     </el-table-column>
@@ -279,6 +279,9 @@ export default {
         retire(data) {
             this.sdata = data
             this.show2 = true
+        },
+        jump(id) {
+            location.href= "https://www.hniee.top/hub/retire/"+id
         },
         remove_chushou(val) {
             let data = {
@@ -682,6 +685,7 @@ export default {
 .do {
     background: #345952;
     color: white;
+
 }
 
 @media screen and (max-width: 800px)  {

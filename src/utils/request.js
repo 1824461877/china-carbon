@@ -13,8 +13,8 @@ const router_url = [
 
 // create an axios instance
 const service = axios.create({
-    // baseURL: "https://www.hniee.top",
-    baseURL: "/",
+    baseURL: "https://www.hniee.top",
+    // baseURL: "/",
     // withCredentials: true, // send cookies when cross-domain requests
     timeout: 3000 // request timeout
 })
